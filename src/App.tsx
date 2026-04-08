@@ -48,6 +48,80 @@ function shouldLoadSpline(): boolean {
   return !isMobile && !isLowEnd && !!gl;
 }
 
+const SPLINE_CACHE_KEY = 'conoti-spline-snapshot';
+
+function SplineStaticMobile() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [imgSrc, setImgSrc] = useState<string | null>(() => {
+    // Check localStorage for a cached snapshot
+    try { return localStorage.getItem(SPLINE_CACHE_KEY); } catch { return null; }
+  });
+
+  useEffect(() => {
+    // Already have a cached image — skip loading Spline
+    if (imgSrc) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const app = new Application(canvas);
+    const timeout = setTimeout(() => app.dispose(), 12000);
+
+    app.load(SPLINE_SCENE).then(() => {
+      clearTimeout(timeout);
+      // Wait a frame for the scene to render, then capture
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          try {
+            const dataUrl = canvas.toDataURL('image/webp', 0.85);
+            setImgSrc(dataUrl);
+            localStorage.setItem(SPLINE_CACHE_KEY, dataUrl);
+          } catch {
+            // toDataURL may fail (tainted canvas) — use PNG fallback
+            try {
+              const dataUrl = canvas.toDataURL('image/png');
+              setImgSrc(dataUrl);
+              localStorage.setItem(SPLINE_CACHE_KEY, dataUrl);
+            } catch { /* give up, show canvas as-is */ }
+          }
+          app.dispose();
+        });
+      });
+    }).catch(() => {
+      clearTimeout(timeout);
+      app.dispose();
+    });
+
+    return () => { clearTimeout(timeout); };
+  }, [imgSrc]);
+
+  return (
+    <div className="relative flex items-center justify-center">
+      <div className="relative h-[300px] w-full overflow-hidden">
+        {imgSrc ? (
+          // Static captured image — zero GPU cost
+          <img
+            src={imgSrc}
+            alt="3D visualization"
+            className="w-full h-full object-contain"
+          />
+        ) : (
+          // Temporary: render Spline to capture a frame
+          <>
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="h-10 w-10 rounded-full border-2 border-purple-500/30 border-t-purple-500 animate-spin" />
+            </div>
+            <canvas
+              ref={canvasRef}
+              style={{ width: '100%', height: '100%', opacity: 0 }}
+            />
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function SplineHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loaded, setLoaded] = useState(false);
@@ -79,30 +153,9 @@ function SplineHero() {
     };
   }, [canLoad]);
 
-  // MOBILE: always show CSS sphere
+  // MOBILE: load Spline once, capture a static frame, dispose runtime
   if (IS_MOBILE) {
-    return (
-      <div className="relative flex items-center justify-center">
-        <div className="relative h-[280px] w-[280px]">
-          {/* Outer orbit ring */}
-          <div className="absolute inset-0 rounded-full border border-purple-500/20 animate-[spin_40s_linear_infinite]" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-3 h-3 rounded-full bg-purple-500/70 shadow-[0_0_12px_rgba(147,51,234,0.6)]" />
-          {/* Mid orbit ring */}
-          <div className="absolute inset-6 rounded-full border border-fuchsia-500/15 animate-[spin_25s_linear_infinite_reverse]" />
-          <div className="absolute inset-6 bottom-0 right-1/4 w-2 h-2 rounded-full bg-fuchsia-400/60 shadow-[0_0_8px_rgba(217,70,239,0.5)]" />
-          {/* Inner glow sphere */}
-          <div className="absolute inset-10 rounded-full bg-gradient-to-br from-purple-600/40 via-fuchsia-500/20 to-blue-600/30 shadow-[0_0_80px_rgba(147,51,234,0.3)]" />
-          <div className="absolute inset-14 rounded-full bg-gradient-to-br from-purple-700/25 via-transparent to-blue-700/20 border border-white/10" />
-          {/* Center stat */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <p className="font-heading text-5xl font-bold text-white tracking-tighter">20k+</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Especialistas</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <SplineStaticMobile />;
   }
 
   // DESKTOP: Spline 3D with fallback
