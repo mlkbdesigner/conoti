@@ -93,14 +93,18 @@ function SplineHero() {
       className="relative flex items-center justify-center lg:py-0"
     >
       <div className="relative h-[350px] w-full sm:h-[520px] lg:h-[580px] overflow-hidden">
-        {/* Mobile fallback - decorative CSS sphere */}
+        {/* Mobile fallback - decorative CSS sphere with orbiting rings */}
         {showFallback && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative h-[260px] w-[260px] sm:h-[320px] sm:w-[320px]">
-              {/* Glowing orb */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-600/40 via-fuchsia-500/20 to-blue-600/30 shadow-[0_0_80px_rgba(147,51,234,0.3)] animate-pulse" />
-              <div className="absolute inset-4 rounded-full bg-gradient-to-br from-purple-700/30 via-transparent to-blue-700/20 border border-white/10" />
-              <div className="absolute inset-10 rounded-full bg-gradient-to-br from-purple-800/20 via-transparent to-transparent border border-white/5" />
+            <div className="relative h-[280px] w-[280px] sm:h-[340px] sm:w-[340px]">
+              {/* Outer orbit ring */}
+              <div className="absolute inset-0 rounded-full border border-purple-500/15 animate-[spin_40s_linear_infinite]" />
+              <div className="absolute inset-0 top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-3 h-3 rounded-full bg-purple-500/60 shadow-[0_0_10px_rgba(147,51,234,0.5)]" />
+              {/* Mid orbit ring */}
+              <div className="absolute inset-6 rounded-full border border-fuchsia-500/10 animate-[spin_30s_linear_infinite_reverse]" />
+              {/* Inner glow */}
+              <div className="absolute inset-12 rounded-full bg-gradient-to-br from-purple-600/30 via-fuchsia-500/15 to-blue-600/20 shadow-[0_0_60px_rgba(147,51,234,0.25)]" />
+              <div className="absolute inset-16 rounded-full bg-gradient-to-br from-purple-700/20 via-transparent to-blue-700/15 border border-white/10" />
               {/* Center stat */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
@@ -258,7 +262,7 @@ function AutopilotSection() {
               aria-label={isOn ? 'Desativar autopilot' : 'Ativar autopilot'}
             >
               <div className={`relative w-20 h-11 rounded-full transition-colors duration-300 ${isOn ? 'bg-purple-600 shadow-[0_0_30px_rgba(147,51,234,0.5)]' : 'bg-white/10 border border-white/20'}`}>
-                <M
+                <motion.div
                   className="absolute top-1.5 w-8 h-8 rounded-full bg-white shadow-lg"
                   animate={{ x: isOn ? 36 : 4 }}
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
@@ -285,12 +289,10 @@ function AutopilotSection() {
           {autopilotSteps.map((step, i) => {
             const isComplete = completedSteps.includes(i);
             return (
-              <M
+              <motion.div
                 key={i}
-                initial={{ opacity: 0.3, y: 10 }}
-                whileInView={{ opacity: isOn ? 1 : 0.3, y: 0 }}
-                viewport={{ once: false }}
-                animate={isComplete ? { opacity: 1, y: 0 } : {}}
+                initial={IS_MOBILE ? { opacity: 0.3 } : { opacity: 0.3, y: 10 }}
+                animate={isComplete ? { opacity: 1, y: 0 } : isOn ? { opacity: 1, y: 0 } : { opacity: 0.3, y: IS_MOBILE ? 0 : 10 }}
                 transition={{ duration: 0.3, delay: isOn ? i * 0.08 : 0 }}
                 className={`flex items-center justify-between rounded-2xl border px-8 py-5 transition-all duration-300 ${
                   isComplete
@@ -315,15 +317,15 @@ function AutopilotSection() {
                   </span>
                 </div>
                 {isComplete && (
-                  <MSpan
+                  <motion.span
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-xs font-bold text-purple-400 uppercase tracking-widest shrink-0 ml-4"
                   >
                     Completo
-                  </MSpan>
+                  </motion.span>
                 )}
-              </M>
+              </motion.div>
             );
           })}
         </div>
@@ -753,14 +755,22 @@ export default function App() {
                   <div className="relative h-24 w-full overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3">
                     <div className="flex items-end justify-between h-full gap-1">
                       {[35, 50, 42, 65, 55, 78, 60, 85, 70, 92, 80, 95].map((h, i) => (
-                        <M
-                          key={i}
-                          initial={{ height: 0 }}
-                          whileInView={{ height: `${h}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.5, delay: 0.3 + i * 0.05 }}
-                          className="flex-1 rounded-sm bg-gradient-to-t from-purple-600 to-purple-400"
-                        />
+                        IS_MOBILE ? (
+                          <div
+                            key={i}
+                            style={{ height: `${h}%` }}
+                            className="flex-1 rounded-sm bg-gradient-to-t from-purple-600 to-purple-400"
+                          />
+                        ) : (
+                          <motion.div
+                            key={i}
+                            initial={{ height: 0 }}
+                            whileInView={{ height: `${h}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.3 + i * 0.05 }}
+                            className="flex-1 rounded-sm bg-gradient-to-t from-purple-600 to-purple-400"
+                          />
+                        )
                       ))}
                     </div>
                   </div>
