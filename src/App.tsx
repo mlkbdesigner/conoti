@@ -81,16 +81,27 @@ function SplineHero() {
       transition={{ duration: 1.2, delay: 0.3 }}
       className="relative flex items-center justify-center lg:py-0"
     >
-      <div className="relative h-[450px] w-full sm:h-[520px] lg:h-[580px] overflow-hidden">
+      <div className="relative h-[350px] w-full sm:h-[520px] lg:h-[580px] overflow-hidden">
+        {/* Mobile fallback - decorative CSS sphere */}
         {showFallback && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="glass rounded-[2rem] p-10 text-center shadow-[0_0_50px_rgba(147,51,234,0.2)] ring-1 ring-white/20 backdrop-blur-3xl">
-              <p className="font-heading text-6xl font-bold text-white mb-1 tracking-tighter">20k+</p>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Especialistas</p>
+            <div className="relative h-[260px] w-[260px] sm:h-[320px] sm:w-[320px]">
+              {/* Glowing orb */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-600/40 via-fuchsia-500/20 to-blue-600/30 shadow-[0_0_80px_rgba(147,51,234,0.3)] animate-pulse" />
+              <div className="absolute inset-4 rounded-full bg-gradient-to-br from-purple-700/30 via-transparent to-blue-700/20 border border-white/10" />
+              <div className="absolute inset-10 rounded-full bg-gradient-to-br from-purple-800/20 via-transparent to-transparent border border-white/5" />
+              {/* Center stat */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <p className="font-heading text-5xl font-bold text-white tracking-tighter">20k+</p>
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Especialistas</p>
+                </div>
+              </div>
             </div>
           </div>
         )}
 
+        {/* Desktop - Spline 3D */}
         {canLoad && !failed && (
           <>
             {!loaded && (
