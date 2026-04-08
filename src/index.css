@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-purple: #616083;
+  --color-brand-neon: #BCF96A;
+  --color-brand-dark: #0C0E1D;
+
+  --shadow-glow-purple: 0 0 20px rgba(147, 51, 234, 0.3);
+  --shadow-glow-neon: 0 0 20px rgba(180, 246, 86, 0.3);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#0C0E1D] text-slate-200;
+  }
+
+  .skip-link {
+    @apply absolute -top-full left-4 z-[100] rounded-b-lg bg-purple-600 px-6 py-3 text-white font-bold;
+    @apply focus:top-0 transition-all;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-2xl border border-white/5;
+  }
+  .text-gradient-purple {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400;
+  }
+  .text-gradient-neon {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-emerald-500;
+  }
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  .badge-glass {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-widest;
+    @apply backdrop-blur-2xl backdrop-saturate-150;
+    @apply bg-white/[0.06] border border-white/15;
+    @apply shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_20px_rgba(0,0,0,0.3)];
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
