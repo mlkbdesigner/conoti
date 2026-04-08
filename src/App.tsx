@@ -48,79 +48,7 @@ function shouldLoadSpline(): boolean {
   return !isMobile && !isLowEnd && !!gl;
 }
 
-const SPLINE_CACHE_KEY = 'conoti-spline-snapshot';
-
-function SplineStaticMobile() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [imgSrc, setImgSrc] = useState<string | null>(() => {
-    // Check localStorage for a cached snapshot
-    try { return localStorage.getItem(SPLINE_CACHE_KEY); } catch { return null; }
-  });
-
-  useEffect(() => {
-    // Already have a cached image — skip loading Spline
-    if (imgSrc) return;
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const app = new Application(canvas);
-    const timeout = setTimeout(() => app.dispose(), 12000);
-
-    app.load(SPLINE_SCENE).then(() => {
-      clearTimeout(timeout);
-      // Wait a frame for the scene to render, then capture
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          try {
-            const dataUrl = canvas.toDataURL('image/webp', 0.85);
-            setImgSrc(dataUrl);
-            localStorage.setItem(SPLINE_CACHE_KEY, dataUrl);
-          } catch {
-            // toDataURL may fail (tainted canvas) — use PNG fallback
-            try {
-              const dataUrl = canvas.toDataURL('image/png');
-              setImgSrc(dataUrl);
-              localStorage.setItem(SPLINE_CACHE_KEY, dataUrl);
-            } catch { /* give up, show canvas as-is */ }
-          }
-          app.dispose();
-        });
-      });
-    }).catch(() => {
-      clearTimeout(timeout);
-      app.dispose();
-    });
-
-    return () => { clearTimeout(timeout); };
-  }, [imgSrc]);
-
-  return (
-    <div className="relative flex items-center justify-center">
-      <div className="relative h-[300px] w-full overflow-hidden">
-        {imgSrc ? (
-          // Static captured image — zero GPU cost
-          <img
-            src={imgSrc}
-            alt="3D visualization"
-            className="w-full h-full object-contain"
-          />
-        ) : (
-          // Temporary: render Spline to capture a frame
-          <>
-            <div className="absolute inset-0 flex items-center justify-center z-10">
-              <div className="h-10 w-10 rounded-full border-2 border-purple-500/30 border-t-purple-500 animate-spin" />
-            </div>
-            <canvas
-              ref={canvasRef}
-              style={{ width: '100%', height: '100%', opacity: 0 }}
-            />
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
+// Mobile: pre-rendered static image of the Spline 3D scene with badges
 
 function SplineHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -153,9 +81,20 @@ function SplineHero() {
     };
   }, [canLoad]);
 
-  // MOBILE: load Spline once, capture a static frame, dispose runtime
+  // MOBILE: static pre-rendered image of the 3D scene
   if (IS_MOBILE) {
-    return <SplineStaticMobile />;
+    return (
+      <div className="relative flex items-center justify-center">
+        <div className="relative w-full max-w-[340px] mx-auto">
+          <img
+            src="/hero-sphere.png"
+            alt="Conoti 3D TikTok"
+            className="w-full h-auto"
+            loading="eager"
+          />
+        </div>
+      </div>
+    );
   }
 
   // DESKTOP: Spline 3D with fallback
