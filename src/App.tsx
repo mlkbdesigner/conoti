@@ -50,24 +50,20 @@ function shouldLoadSpline(): boolean {
 
 function SplineHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const appRef = useRef<Application>();
   const [loaded, setLoaded] = useState(false);
-  const [canLoad, setCanLoad] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  useEffect(() => {
-    setCanLoad(shouldLoadSpline());
-  }, []);
+  // Only attempt Spline on desktop capable devices
+  const canLoad = !IS_MOBILE && shouldLoadSpline();
 
   useEffect(() => {
     if (!canLoad || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
     const app = new Application(canvas);
-    appRef.current = app;
 
     const timeout = setTimeout(() => {
-      if (!appRef.current) setFailed(true);
+      setFailed(true);
     }, 10000);
 
     app.load(SPLINE_SCENE).then(() => {
@@ -83,8 +79,33 @@ function SplineHero() {
     };
   }, [canLoad]);
 
-  const showFallback = !canLoad || failed;
+  // MOBILE: always show CSS sphere
+  if (IS_MOBILE) {
+    return (
+      <div className="relative flex items-center justify-center">
+        <div className="relative h-[280px] w-[280px]">
+          {/* Outer orbit ring */}
+          <div className="absolute inset-0 rounded-full border border-purple-500/20 animate-[spin_40s_linear_infinite]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-3 h-3 rounded-full bg-purple-500/70 shadow-[0_0_12px_rgba(147,51,234,0.6)]" />
+          {/* Mid orbit ring */}
+          <div className="absolute inset-6 rounded-full border border-fuchsia-500/15 animate-[spin_25s_linear_infinite_reverse]" />
+          <div className="absolute inset-6 bottom-0 right-1/4 w-2 h-2 rounded-full bg-fuchsia-400/60 shadow-[0_0_8px_rgba(217,70,239,0.5)]" />
+          {/* Inner glow sphere */}
+          <div className="absolute inset-10 rounded-full bg-gradient-to-br from-purple-600/40 via-fuchsia-500/20 to-blue-600/30 shadow-[0_0_80px_rgba(147,51,234,0.3)]" />
+          <div className="absolute inset-14 rounded-full bg-gradient-to-br from-purple-700/25 via-transparent to-blue-700/20 border border-white/10" />
+          {/* Center stat */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <p className="font-heading text-5xl font-bold text-white tracking-tighter">20k+</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Especialistas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
+  // DESKTOP: Spline 3D with fallback
   return (
     <M
       initial={{ opacity: 0 }}
@@ -92,26 +113,13 @@ function SplineHero() {
       transition={{ duration: 1.2, delay: 0.3 }}
       className="relative flex items-center justify-center lg:py-0"
     >
-      <div className="relative h-[350px] w-full sm:h-[520px] lg:h-[580px] overflow-hidden">
-        {/* Mobile fallback - decorative CSS sphere with orbiting rings */}
-        {showFallback && (
+      <div className="relative h-[520px] lg:h-[580px] w-full overflow-hidden">
+        {/* Spline failed or loading fallback */}
+        {failed && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative h-[280px] w-[280px] sm:h-[340px] sm:w-[340px]">
-              {/* Outer orbit ring */}
-              <div className="absolute inset-0 rounded-full border border-purple-500/15 animate-[spin_40s_linear_infinite]" />
-              <div className="absolute inset-0 top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-3 h-3 rounded-full bg-purple-500/60 shadow-[0_0_10px_rgba(147,51,234,0.5)]" />
-              {/* Mid orbit ring */}
-              <div className="absolute inset-6 rounded-full border border-fuchsia-500/10 animate-[spin_30s_linear_infinite_reverse]" />
-              {/* Inner glow */}
-              <div className="absolute inset-12 rounded-full bg-gradient-to-br from-purple-600/30 via-fuchsia-500/15 to-blue-600/20 shadow-[0_0_60px_rgba(147,51,234,0.25)]" />
-              <div className="absolute inset-16 rounded-full bg-gradient-to-br from-purple-700/20 via-transparent to-blue-700/15 border border-white/10" />
-              {/* Center stat */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <p className="font-heading text-5xl font-bold text-white tracking-tighter">20k+</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Especialistas</p>
-                </div>
-              </div>
+            <div className="glass rounded-[2rem] p-10 text-center shadow-[0_0_50px_rgba(147,51,234,0.2)] ring-1 ring-white/20 backdrop-blur-3xl">
+              <p className="font-heading text-6xl font-bold text-white mb-1 tracking-tighter">20k+</p>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Especialistas</p>
             </div>
           </div>
         )}
