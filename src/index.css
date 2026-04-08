@@ -61,3 +61,19 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Mobile performance: reduce heavy GPU effects */
+@media (max-width: 767px) {
+  .glass {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+  .glass-dark {
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  /* Reduce ambient glow blobs */
+  [class*="blur-[1"] {
+    display: none !important;
+  }
+}
