@@ -1094,7 +1094,7 @@ export default function App() {
                   <ArrowRight size={14} />
                   <span>Comece Agora</span>
                 </div>
-                <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">Cadastre-se e receba o contato do nosso time em até 5 minutos</h2>
+                <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">Cadastre-se e receba o contato do nosso time em até 24 horas</h2>
                 <p className="text-slate-400 font-medium text-lg">Preencha os dados abaixo para receber sua análise gratuita.</p>
               </motion.div>
 
@@ -1112,7 +1112,7 @@ export default function App() {
                       <CheckCircle2 size={64} />
                     </div>
                     <h3 className="font-heading text-3xl font-bold text-white mb-4 tracking-tight">Recebemos seus dados!</h3>
-                    <p className="text-slate-400 text-lg">Nosso time entra em contato em até 5 minutos.</p>
+                    <p className="text-slate-400 text-lg">Nosso time entra em contato em até 24 horas.</p>
                     <button
                       onClick={() => { setFormStatus('idle'); setFormStep(0); }}
                       className="mt-10 text-purple-400 font-bold hover:text-purple-300 transition-colors duration-200 uppercase tracking-widest text-sm cursor-pointer"
