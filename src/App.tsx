@@ -537,7 +537,7 @@ export default function App() {
             {partnerLogos.map((logo) => (
               <div
                 key={logo.alt}
-                className="flex items-center justify-center py-8 md:py-10 border-r border-white/5 last:border-r-0 hover:bg-white/[0.02] transition-colors duration-300"
+                className="flex items-center justify-center py-8 md:py-10 border-r border-b md:border-b-0 border-white/10 last:border-r-0 hover:bg-white/[0.02] transition-colors duration-300"
               >
                 <img
                   src={logo.src}
