@@ -85,8 +85,8 @@ function SplineHero() {
         {showFallback && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="glass rounded-[2rem] p-10 text-center shadow-[0_0_50px_rgba(147,51,234,0.2)] ring-1 ring-white/20 backdrop-blur-3xl">
-              <p className="font-heading text-6xl font-bold text-white mb-1 tracking-tighter">20k+</p>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Especialistas</p>
+              <p className="font-heading text-5xl font-bold text-white mb-1 tracking-tighter">R$6.6M+</p>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Faturado p/ Clientes</p>
             </div>
           </div>
         )}
@@ -469,7 +469,7 @@ export default function App() {
                   Escale no TikTok.<br /><span className="text-gradient-purple">Do criativo à venda.</span>
                 </h1>
                 <p className="mt-8 text-lg text-slate-400 leading-relaxed max-w-lg">
-                  A Conoti é o hub completo de TikTok para sua marca. De criativos a loja, de ads a estratégia — escalamos cada frente com IA, dados e 20k+ especialistas.
+                  A Conoti é o hub completo de TikTok para sua marca. De criativos a loja, de ads a estratégia — escalamos cada frente com IA, dados e R$6.6M+ faturados para clientes.
                 </p>
                 <div className="mt-12 flex flex-col sm:flex-row gap-5">
                   <a
@@ -503,7 +503,7 @@ export default function App() {
                   </div>
                   <div className="h-10 w-px bg-white/10" aria-hidden="true" />
                   <p className="text-sm font-medium text-slate-500 uppercase tracking-widest">
-                    <span className="text-white font-bold">20k+</span> Especialistas
+                    <span className="text-white font-bold">R$6.6M+</span> Faturado p/ Clientes
                   </p>
                 </div>
               </motion.div>
@@ -890,7 +890,7 @@ export default function App() {
                     <span className="text-purple-500/40">✦</span>
                     <span className="text-slate-500">Do Criativo à Venda</span>
                     <span className="text-purple-500/40">✦</span>
-                    <span className="font-bold text-white">20k+ Especialistas</span>
+                    <span className="font-bold text-white">R$6.6M+ Faturado p/ Clientes</span>
                     <span className="text-purple-500/40">✦</span>
                   </span>
                 ))}
@@ -1055,7 +1055,7 @@ export default function App() {
                 },
                 {
                   q: "Vocês produzem os criativos ou eu preciso fornecer?",
-                  a: "Nós produzimos tudo. Temos uma rede de 20k+ criadores e uma IA que gera scripts otimizados para os primeiros 3 segundos. Você só aprova."
+                  a: "Nós produzimos tudo. Temos uma rede de criadores especializados e uma IA que gera scripts otimizados para os primeiros 3 segundos. Você só aprova."
                 },
                 {
                   q: "Como funciona o TikTok Shop?",
