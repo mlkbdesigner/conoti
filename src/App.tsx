@@ -37,7 +37,24 @@ function shouldLoadSpline(): boolean {
   return !isMobile && !isLowEnd && !!gl;
 }
 
+const IS_MOBILE = typeof window !== 'undefined' && window.innerWidth < 768;
+
 function SplineHero() {
+  // Mobile: show static PNG image instead of Spline 3D
+  if (IS_MOBILE) {
+    return (
+      <div className="relative flex items-center justify-center">
+        <img
+          src="/hero-sphere.png"
+          alt="Conoti 3D"
+          className="w-full max-w-[340px] mx-auto h-auto"
+          loading="eager"
+        />
+      </div>
+    );
+  }
+
+  // Desktop: Spline 3D
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const appRef = useRef<Application>();
   const [loaded, setLoaded] = useState(false);
