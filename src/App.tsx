@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback, FormEvent, useId } from 'react';
-import { motion, AnimatePresence as _AnimatePresence } from 'motion/react';
+import { useState, useEffect, useRef, useCallback, FormEvent, useId } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   TrendingUp,
   Zap,
@@ -28,17 +28,6 @@ import { InfiniteSlider } from '@/components/ui/infinite-slider';
 
 const SPLINE_SCENE = 'https://prod.spline.design/rQbuhcAQugoIO41z/scene.splinecode';
 
-function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < breakpoint);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, [breakpoint]);
-  return isMobile;
-}
-
 function shouldLoadSpline(): boolean {
   if (typeof window === 'undefined') return false;
   const isMobile = window.innerWidth < 768;
@@ -48,24 +37,26 @@ function shouldLoadSpline(): boolean {
   return !isMobile && !isLowEnd && !!gl;
 }
 
-// Mobile: pre-rendered static image of the Spline 3D scene with badges
-
 function SplineHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const appRef = useRef<Application>();
   const [loaded, setLoaded] = useState(false);
+  const [canLoad, setCanLoad] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  // Only attempt Spline on desktop capable devices
-  const canLoad = !IS_MOBILE && shouldLoadSpline();
+  useEffect(() => {
+    setCanLoad(shouldLoadSpline());
+  }, []);
 
   useEffect(() => {
     if (!canLoad || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
     const app = new Application(canvas);
+    appRef.current = app;
 
     const timeout = setTimeout(() => {
-      setFailed(true);
+      if (!appRef.current) setFailed(true);
     }, 10000);
 
     app.load(SPLINE_SCENE).then(() => {
@@ -81,33 +72,17 @@ function SplineHero() {
     };
   }, [canLoad]);
 
-  // MOBILE: static pre-rendered image of the 3D scene
-  if (IS_MOBILE) {
-    return (
-      <div className="relative flex items-center justify-center">
-        <div className="relative w-full max-w-[340px] mx-auto">
-          <img
-            src="/hero-sphere.png"
-            alt="Conoti 3D TikTok"
-            className="w-full h-auto"
-            loading="eager"
-          />
-        </div>
-      </div>
-    );
-  }
+  const showFallback = !canLoad || failed;
 
-  // DESKTOP: Spline 3D with fallback
   return (
-    <M
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2, delay: 0.3 }}
       className="relative flex items-center justify-center lg:py-0"
     >
-      <div className="relative h-[520px] lg:h-[580px] w-full overflow-hidden">
-        {/* Spline failed or loading fallback */}
-        {failed && (
+      <div className="relative h-[450px] w-full sm:h-[520px] lg:h-[580px] overflow-hidden">
+        {showFallback && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="glass rounded-[2rem] p-10 text-center shadow-[0_0_50px_rgba(147,51,234,0.2)] ring-1 ring-white/20 backdrop-blur-3xl">
               <p className="font-heading text-6xl font-bold text-white mb-1 tracking-tighter">20k+</p>
@@ -116,7 +91,6 @@ function SplineHero() {
           </div>
         )}
 
-        {/* Desktop - Spline 3D */}
         {canLoad && !failed && (
           <>
             {!loaded && (
@@ -172,14 +146,14 @@ function SplineHero() {
           </div>
         </div>
       </div>
-    </M>
+    </motion.div>
   );
 }
 
 function FaqItem({ question, answer, index }: { key?: number; question: string; answer: string; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <M
+    <motion.div
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -190,17 +164,17 @@ function FaqItem({ question, answer, index }: { key?: number; question: string; 
         className="w-full flex items-center justify-between gap-4 rounded-2xl border border-white/5 bg-white/[0.02] px-7 py-5 text-left cursor-pointer transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04]"
       >
         <span className="font-heading text-base font-bold text-white">{question}</span>
-        <MSpan
+        <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.2 }}
           className="text-purple-400 text-xl font-light shrink-0"
         >
           +
-        </MSpan>
+        </motion.span>
       </button>
       <AnimatePresence>
         {isOpen && (
-          <M
+          <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -208,10 +182,10 @@ function FaqItem({ question, answer, index }: { key?: number; question: string; 
             className="overflow-hidden"
           >
             <p className="px-7 py-4 text-sm text-slate-400 leading-relaxed">{answer}</p>
-          </M>
+          </motion.div>
         )}
       </AnimatePresence>
-    </M>
+    </motion.div>
   );
 }
 
@@ -248,7 +222,7 @@ function AutopilotSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-purple-900/10 blur-[180px] pointer-events-none" aria-hidden="true" />
       <div className="mx-auto max-w-3xl px-6 relative z-10">
         <div className="text-center mb-20">
-          <MH2
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -270,8 +244,8 @@ function AutopilotSection() {
               </div>
             </button>
             {' '}<span className="text-gradient-purple">a Escala</span>
-          </MH2>
-          <MP
+          </motion.h2>
+          <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -282,7 +256,7 @@ function AutopilotSection() {
               ? 'A Conoti está no controle — analisando criativos, otimizando bids e escalando seus resultados no TikTok enquanto você foca na estratégia.'
               : 'Um clique. É tudo que precisa para a Conoti assumir suas campanhas do TikTok Ads com IA e escalar seus resultados.'
             }
-          </MP>
+          </motion.p>
         </div>
 
         <div className="space-y-4">
@@ -291,8 +265,10 @@ function AutopilotSection() {
             return (
               <motion.div
                 key={i}
-                initial={IS_MOBILE ? { opacity: 0.3 } : { opacity: 0.3, y: 10 }}
-                animate={isComplete ? { opacity: 1, y: 0 } : isOn ? { opacity: 1, y: 0 } : { opacity: 0.3, y: IS_MOBILE ? 0 : 10 }}
+                initial={{ opacity: 0.3, y: 10 }}
+                whileInView={{ opacity: isOn ? 1 : 0.3, y: 0 }}
+                viewport={{ once: false }}
+                animate={isComplete ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.3, delay: isOn ? i * 0.08 : 0 }}
                 className={`flex items-center justify-between rounded-2xl border px-8 py-5 transition-all duration-300 ${
                   isComplete
@@ -335,14 +311,10 @@ function AutopilotSection() {
 }
 
 const partnerLogos = [
-  { src: "https://svgl.app/library/nvidia-wordmark-light.svg", alt: "Nvidia" },
-  { src: "https://svgl.app/library/supabase_wordmark_light.svg", alt: "Supabase" },
-  { src: "https://svgl.app/library/openai_wordmark_light.svg", alt: "OpenAI" },
-  { src: "https://svgl.app/library/vercel_wordmark.svg", alt: "Vercel" },
-  { src: "https://svgl.app/library/github_wordmark_light.svg", alt: "GitHub" },
-  { src: "https://svgl.app/library/claude-ai-wordmark-icon_light.svg", alt: "Claude AI" },
-  { src: "https://svgl.app/library/stripe_wordmark.svg", alt: "Stripe" },
-  { src: "https://svgl.app/library/shopify_wordmark_light.svg", alt: "Shopify" },
+  { src: "/logos/marini.png", alt: "Marini" },
+  { src: "/logos/fozoco.png", alt: "Fozoco" },
+  { src: "/logos/blox.png", alt: "Blox" },
+  { src: "/logos/properjack.png", alt: "Proper Jack" },
 ];
 
 const navItems = [
@@ -351,39 +323,7 @@ const navItems = [
   { label: 'Resultados', href: '#results' },
 ];
 
-// Resolved once at module load — never re-evaluated, zero re-render cost
-const IS_MOBILE = typeof window !== 'undefined' && window.innerWidth < 768;
-
-const AnimatePresence = IS_MOBILE
-  ? (({ children }: { children?: React.ReactNode }) => <>{children}</>) as unknown as typeof _AnimatePresence
-  : _AnimatePresence;
-
-function stripMotion({ initial, animate, whileInView, whileHover, whileTap, whileFocus, whileDrag, viewport, transition, exit, variants, onAnimationStart, onAnimationComplete, layout, layoutId, ...rest }: Record<string, unknown>) {
-  return rest;
-}
-
-const M = (IS_MOBILE
-  ? ((props: Record<string, unknown>) => <div {...stripMotion(props)} />)
-  : motion.div) as typeof motion.div;
-
-const MFigure = (IS_MOBILE
-  ? ((props: Record<string, unknown>) => <figure {...stripMotion(props)} />)
-  : motion.figure) as typeof motion.figure;
-
-const MSpan = (IS_MOBILE
-  ? ((props: Record<string, unknown>) => <span {...stripMotion(props)} />)
-  : motion.span) as typeof motion.span;
-
-const MH2 = (IS_MOBILE
-  ? ((props: Record<string, unknown>) => <h2 {...stripMotion(props)} />)
-  : motion.h2) as typeof motion.h2;
-
-const MP = (IS_MOBILE
-  ? ((props: Record<string, unknown>) => <p {...stripMotion(props)} />)
-  : motion.p) as typeof motion.p;
-
 export default function App() {
-  const mobile = useIsMobile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [formStep, setFormStep] = useState(0);
@@ -484,7 +424,7 @@ export default function App() {
             {/* Mobile Nav */}
             <AnimatePresence>
               {isMenuOpen && (
-                <M
+                <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
@@ -509,14 +449,14 @@ export default function App() {
                       Agendar Consultoria
                     </a>
                   </div>
-                </M>
+                </motion.div>
               )}
             </AnimatePresence>
           </header>
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 pt-12 lg:pt-20">
             <div className="grid gap-16 lg:grid-cols-[1fr_1fr] lg:items-center justify-items-center">
-              <M
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -566,7 +506,7 @@ export default function App() {
                     <span className="text-white font-bold">20k+</span> Especialistas
                   </p>
                 </div>
-              </M>
+              </motion.div>
 
               {/* Spline 3D Scene */}
               <SplineHero />
@@ -576,7 +516,7 @@ export default function App() {
 
         {/* Social Proof */}
         <section className="border-y border-white/5 relative" aria-label="Marcas parceiras">
-          <div className="grid grid-cols-4 md:grid-cols-8">
+          <div className="grid grid-cols-2 md:grid-cols-4">
             {partnerLogos.map((logo) => (
               <div
                 key={logo.alt}
@@ -585,7 +525,7 @@ export default function App() {
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  className="h-4 md:h-5 select-none brightness-0 invert opacity-25 hover:opacity-60 transition-opacity duration-300"
+                  className="h-6 md:h-7 select-none brightness-0 invert opacity-30 hover:opacity-70 transition-opacity duration-300"
                   loading="lazy"
                 />
               </div>
@@ -597,8 +537,11 @@ export default function App() {
         <section id="serviços" className="py-28 lg:py-44 relative">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-purple-900/10 blur-[150px] pointer-events-none" aria-hidden="true" />
           <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-            <M
-              {...(mobile ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6 } })}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-center mb-20"
             >
               <div className="badge-glass text-purple-400 mb-6 backdrop-blur-md mx-auto">
@@ -612,7 +555,7 @@ export default function App() {
               <p className="text-slate-400 font-medium text-lg max-w-xl mx-auto leading-relaxed">
                 Vamos mergulhar nos pilares que sustentam nossos resultados no TikTok.
               </p>
-            </M>
+            </motion.div>
 
             {/* Cards - full bleed lines */}
             <div className="relative left-1/2 -translate-x-1/2 w-screen">
@@ -656,7 +599,7 @@ export default function App() {
                 }
               ].map((service, index) => (
                 <div key={index}>
-                  <M
+                  <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -677,7 +620,7 @@ export default function App() {
                       <p className={`font-heading text-3xl font-bold ${service.color}`}>{service.stat}</p>
                       <p className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">{service.statLabel}</p>
                     </div>
-                  </M>
+                  </motion.div>
                   <div className="h-px w-full" style={{ background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.06) 8%, rgba(255,255,255,0.06) 92%, transparent)' }} />
                 </div>
               ))}
@@ -690,8 +633,11 @@ export default function App() {
         <section id="processo" className="py-28 lg:py-44 relative">
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-900/10 blur-[120px] pointer-events-none" aria-hidden="true" />
           <div className="mx-auto max-w-5xl px-6 lg:px-8 relative z-10">
-            <M
-              {...(mobile ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6 } })}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-center mb-20"
             >
               <div className="badge-glass text-emerald-400 mb-6 backdrop-blur-md mx-auto">
@@ -704,11 +650,11 @@ export default function App() {
               <p className="text-slate-400 font-medium text-lg max-w-xl mx-auto leading-relaxed">
                 Cada peça do nosso sistema trabalha junto para transformar investimento em receita previsível.
               </p>
-            </M>
+            </motion.div>
 
             <div className="grid grid-cols-6 gap-3">
               {/* Card 1 — Big stat */}
-              <M
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -723,10 +669,10 @@ export default function App() {
                 </div>
                 <h3 className="mt-6 font-heading text-2xl font-bold text-white">Zero Achismo</h3>
                 <p className="mt-2 text-sm text-slate-400">Cada decisão é validada por dados de 326k+ anúncios reais antes de ir ao ar.</p>
-              </M>
+              </motion.div>
 
               {/* Card 2 — Auditoria */}
-              <M
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -740,10 +686,10 @@ export default function App() {
                   <h3 className="font-heading text-lg font-bold text-white">Diagnóstico da Conta</h3>
                   <p className="text-sm text-slate-400">Raio-X completo: conta, concorrentes, público e oportunidades que ninguém viu.</p>
                 </div>
-              </M>
+              </motion.div>
 
               {/* Card 3 — Criativos */}
-              <M
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -755,22 +701,14 @@ export default function App() {
                   <div className="relative h-24 w-full overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-3">
                     <div className="flex items-end justify-between h-full gap-1">
                       {[35, 50, 42, 65, 55, 78, 60, 85, 70, 92, 80, 95].map((h, i) => (
-                        IS_MOBILE ? (
-                          <div
-                            key={i}
-                            style={{ height: `${h}%` }}
-                            className="flex-1 rounded-sm bg-gradient-to-t from-purple-600 to-purple-400"
-                          />
-                        ) : (
-                          <motion.div
-                            key={i}
-                            initial={{ height: 0 }}
-                            whileInView={{ height: `${h}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.3 + i * 0.05 }}
-                            className="flex-1 rounded-sm bg-gradient-to-t from-purple-600 to-purple-400"
-                          />
-                        )
+                        <motion.div
+                          key={i}
+                          initial={{ height: 0 }}
+                          whileInView={{ height: `${h}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.3 + i * 0.05 }}
+                          className="flex-1 rounded-sm bg-gradient-to-t from-purple-600 to-purple-400"
+                        />
                       ))}
                     </div>
                   </div>
@@ -779,10 +717,10 @@ export default function App() {
                   <h3 className="font-heading text-lg font-bold text-white">Produção & Teste A/B</h3>
                   <p className="text-sm text-slate-400">IA gera scripts com hooks de 3s, produzimos os criativos e testamos variações até achar os winners.</p>
                 </div>
-              </M>
+              </motion.div>
 
               {/* Card 4 — Escala (wide) */}
-              <M
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -819,10 +757,10 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-              </M>
+              </motion.div>
 
               {/* Card 5 — Monitoramento (wide) */}
-              <M
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -857,14 +795,14 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-              </M>
+              </motion.div>
             </div>
           </div>
         </section>
 
         {/* Spinning Sticker Divider */}
         <div className="relative z-20 flex justify-center -mb-[45px]">
-          <M
+          <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
@@ -885,7 +823,7 @@ export default function App() {
                 </textPath>
               </text>
             </svg>
-          </M>
+          </motion.div>
         </div>
 
         {/* CTA Banner */}
@@ -899,8 +837,11 @@ export default function App() {
           <div className="absolute top-0 left-[20%] w-[300px] h-[300px] rounded-full bg-fuchsia-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
           <div className="absolute bottom-0 right-[20%] w-[300px] h-[300px] rounded-full bg-blue-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
           <div className="mx-auto max-w-4xl px-6 relative z-10 text-center">
-            <M
-              {...(mobile ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6 } })}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
               <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter leading-tight mb-6">
                 Seu Hub Completo de{' '}
@@ -922,7 +863,7 @@ export default function App() {
                   Começar Agora
                 </a>
               </div>
-            </M>
+            </motion.div>
           </div>
         </section>
 
@@ -970,8 +911,11 @@ export default function App() {
           <div className="absolute top-0 left-[20%] w-[300px] h-[300px] rounded-full bg-fuchsia-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
           <div className="absolute bottom-0 right-[20%] w-[300px] h-[300px] rounded-full bg-blue-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
           <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
-            <M
-              {...(mobile ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6 } })}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-center mb-20"
             >
               <div className="badge-glass text-emerald-400 mb-6 backdrop-blur-md mx-auto">
@@ -984,11 +928,11 @@ export default function App() {
               <p className="text-slate-400 font-medium text-lg max-w-xl mx-auto leading-relaxed">
                 Resultados reais de marcas que confiaram no nosso hub de soluções TikTok.
               </p>
-            </M>
+            </motion.div>
 
             <div className="grid gap-8 lg:grid-cols-[3fr_2fr]">
               {/* Left bento - Stats (bigger) */}
-              <M
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -1007,7 +951,7 @@ export default function App() {
                       { label: "Marcas Vinculadas", value: "40+", color: "text-fuchsia-400" },
                       { label: "Criativos em Média", value: "7mil+", color: "text-cyan-400" },
                     ].map((stat, i) => (
-                      <M
+                      <motion.div
                         key={i}
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -1017,11 +961,11 @@ export default function App() {
                       >
                         <p className={`font-heading text-3xl lg:text-4xl font-bold ${stat.color}`}>{stat.value}</p>
                         <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
-                      </M>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
-              </M>
+              </motion.div>
 
               {/* Right bento - Testimonials (2 cards) */}
               <div className="grid gap-4 grid-rows-2 h-full">
@@ -1039,7 +983,7 @@ export default function App() {
                     seed: "ana"
                   },
                 ].map((testimonial, i) => (
-                  <MFigure
+                  <motion.figure
                     key={i}
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -1065,7 +1009,7 @@ export default function App() {
                         <p className="text-purple-400 text-[9px] font-bold uppercase tracking-wider">{testimonial.role}</p>
                       </div>
                     </figcaption>
-                  </MFigure>
+                  </motion.figure>
                 ))}
               </div>
             </div>
@@ -1075,8 +1019,11 @@ export default function App() {
         {/* FAQ Section */}
         <section className="py-28 lg:py-44 relative">
           <div className="mx-auto max-w-3xl px-6 lg:px-8 relative z-10">
-            <M
-              {...(mobile ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.6 } })}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
               <div className="badge-glass text-purple-400 mb-6 backdrop-blur-md mx-auto">
@@ -1086,7 +1033,7 @@ export default function App() {
               <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">
                 Perguntas <span className="text-gradient-purple">Frequentes</span>
               </h2>
-            </M>
+            </motion.div>
 
             <div className="space-y-3">
               {[
@@ -1132,7 +1079,7 @@ export default function App() {
           <div className="absolute bottom-0 right-[20%] w-[300px] h-[300px] rounded-full bg-blue-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
           <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
             <div className="mx-auto max-w-2xl">
-              <M
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -1143,15 +1090,15 @@ export default function App() {
                   <ArrowRight size={14} />
                   <span>Comece Agora</span>
                 </div>
-                <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">Cadastre-se e receba o contato do nosso time em até 24 horas</h2>
+                <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">Cadastre-se e receba o contato do nosso time em até 5 minutos</h2>
                 <p className="text-slate-400 font-medium text-lg">Preencha os dados abaixo para receber sua análise gratuita.</p>
-              </M>
+              </motion.div>
 
               <div className="glass-dark rounded-[2.5rem] p-8 lg:p-12 ring-1 ring-white/10 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-600/5 to-transparent pointer-events-none" aria-hidden="true" />
 
                 {formStatus === 'success' ? (
-                  <M
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="flex flex-col items-center justify-center text-center py-10 relative z-10"
@@ -1161,14 +1108,14 @@ export default function App() {
                       <CheckCircle2 size={64} />
                     </div>
                     <h3 className="font-heading text-3xl font-bold text-white mb-4 tracking-tight">Recebemos seus dados!</h3>
-                    <p className="text-slate-400 text-lg">Nosso time entra em contato em até 24 horas.</p>
+                    <p className="text-slate-400 text-lg">Nosso time entra em contato em até 5 minutos.</p>
                     <button
                       onClick={() => { setFormStatus('idle'); setFormStep(0); }}
                       className="mt-10 text-purple-400 font-bold hover:text-purple-300 transition-colors duration-200 uppercase tracking-widest text-sm cursor-pointer"
                     >
                       Enviar novamente
                     </button>
-                  </M>
+                  </motion.div>
                 ) : (
                   <div className="relative z-10">
                     {/* Progress bar */}
@@ -1184,7 +1131,7 @@ export default function App() {
                     <form onSubmit={handleSubmit}>
                       <AnimatePresence mode="wait">
                         {formStep === 0 && (
-                          <M
+                          <motion.div
                             key="step-0"
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -1207,11 +1154,11 @@ export default function App() {
                             <button type="button" onClick={() => setFormStep(1)} className="w-full rounded-2xl bg-purple-600/40 backdrop-blur-xl border border-purple-400/20 py-4 text-base font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_4px_20px_rgba(147,51,234,0.3)] cursor-pointer hover:bg-purple-500/50 transition-all duration-200 flex items-center justify-center gap-2">
                               Próximo <ArrowRight size={18} />
                             </button>
-                          </M>
+                          </motion.div>
                         )}
 
                         {formStep === 1 && (
-                          <M
+                          <motion.div
                             key="step-1"
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -1253,11 +1200,11 @@ export default function App() {
                                 Próximo <ArrowRight size={18} />
                               </button>
                             </div>
-                          </M>
+                          </motion.div>
                         )}
 
                         {formStep === 2 && (
-                          <M
+                          <motion.div
                             key="step-2"
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -1278,7 +1225,7 @@ export default function App() {
 
                             <AnimatePresence mode="wait">
                               {isHighBudget ? (
-                                <M
+                                <motion.div
                                   key="vip"
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
@@ -1302,9 +1249,9 @@ export default function App() {
                                     <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">E-mail corporativo</label>
                                     <input type="email" className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white placeholder:text-slate-700 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200" placeholder="email@empresa.com" />
                                   </div>
-                                </M>
+                                </motion.div>
                               ) : (
-                                <M
+                                <motion.div
                                   key="standard"
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
@@ -1314,7 +1261,7 @@ export default function App() {
                                 >
                                   <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Qual seu maior desafio?</label>
                                   <textarea rows={4} className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white placeholder:text-slate-700 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200 resize-none" placeholder="Ex: CPA alto, falta de criativos, dificuldade em escalar..." />
-                                </M>
+                                </motion.div>
                               )}
                             </AnimatePresence>
 
@@ -1326,7 +1273,7 @@ export default function App() {
                                 {formStatus === 'submitting' ? 'Enviando...' : isHighBudget ? 'Solicitar Contato Direto' : 'Solicitar Análise Gratuita'}
                               </button>
                             </div>
-                          </M>
+                          </motion.div>
                         )}
                       </AnimatePresence>
                     </form>
