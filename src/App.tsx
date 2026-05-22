@@ -358,15 +358,15 @@ export default function App() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [formStep, setFormStep] = useState(0);
   const [isHighBudget, setIsHighBudget] = useState(false);
+  const nameId = useId();
+  const emailId = useId();
+  const budgetId = useId();
+  const messageId = useId();
 
   const legalSlug = hash.startsWith('#/') ? hash.slice(2) : '';
   if (legalSlug && legalSlug in LEGAL_PAGES) {
     return <LegalPage slug={legalSlug as keyof typeof LEGAL_PAGES} />;
   }
-  const nameId = useId();
-  const emailId = useId();
-  const budgetId = useId();
-  const messageId = useId();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
