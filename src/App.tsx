@@ -25,6 +25,7 @@ import { Application } from '@splinetool/runtime';
 import { LogoCloud } from '@/components/ui/logo-cloud';
 import { InfiniteGrid } from '@/components/ui/infinite-grid';
 import { InfiniteSlider } from '@/components/ui/infinite-slider';
+import { LegalPage, LEGAL_PAGES } from './components/LegalPage';
 
 const SPLINE_SCENE = 'https://prod.spline.design/rQbuhcAQugoIO41z/scene.splinecode';
 
@@ -341,11 +342,27 @@ const navItems = [
   { label: 'FAQ', href: '#faq' },
 ];
 
+function useHashRoute() {
+  const [hash, setHash] = useState(typeof window !== 'undefined' ? window.location.hash : '');
+  useEffect(() => {
+    const onChange = () => setHash(window.location.hash);
+    window.addEventListener('hashchange', onChange);
+    return () => window.removeEventListener('hashchange', onChange);
+  }, []);
+  return hash;
+}
+
 export default function App() {
+  const hash = useHashRoute();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [formStep, setFormStep] = useState(0);
   const [isHighBudget, setIsHighBudget] = useState(false);
+
+  const legalSlug = hash.startsWith('#/') ? hash.slice(2) : '';
+  if (legalSlug && legalSlug in LEGAL_PAGES) {
+    return <LegalPage slug={legalSlug as keyof typeof LEGAL_PAGES} />;
+  }
   const nameId = useId();
   const emailId = useId();
   const budgetId = useId();
@@ -804,10 +821,10 @@ export default function App() {
                         { name: "Criativo #47", status: "Winner", dot: "bg-purple-500" },
                         { name: "Afiliado C", status: "Em teste", dot: "bg-slate-500" },
                       ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.03] px-4 py-3">
+                        <div key={i} className="flex items-center gap-2 rounded-lg border border-white/5 bg-white/[0.03] px-3 py-2.5">
                           <span className={`h-2 w-2 shrink-0 rounded-full ${item.dot}`} />
-                          <span className="text-sm font-medium text-slate-300 flex-1 truncate">{item.name}</span>
-                          <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider shrink-0">{item.status}</span>
+                          <span className="text-xs font-medium text-slate-300 whitespace-nowrap">{item.name}</span>
+                          <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider ml-auto shrink-0 whitespace-nowrap">{item.status}</span>
                         </div>
                       ))}
                     </div>
@@ -959,7 +976,7 @@ export default function App() {
               >
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-600/5 to-transparent pointer-events-none" aria-hidden="true" />
                 <div className="relative z-10">
-                  <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-14">Números que falam por si</p>
+                  <p className="text-sm font-bold text-purple-400 uppercase tracking-[0.2em] mb-14">Números que falam por si</p>
                   <div className="grid grid-cols-2 gap-x-10 gap-y-12">
                     {[
                       { label: "Gerados na plataforma", value: "+R$10M", color: "text-emerald-400" },
@@ -1380,9 +1397,9 @@ export default function App() {
               &copy; 2026 Conoti. Todos os direitos reservados.
             </p>
             <nav className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-600" aria-label="Links legais">
-              <a href="#" className="hover:text-white transition-colors duration-200">Termos</a>
-              <a href="#" className="hover:text-white transition-colors duration-200">Privacidade</a>
-              <a href="#" className="hover:text-white transition-colors duration-200">Cookies</a>
+              <a href="#/termos-de-uso" className="hover:text-white transition-colors duration-200">Termos</a>
+              <a href="#/politica-de-privacidade" className="hover:text-white transition-colors duration-200">Privacidade</a>
+              <a href="#/politica-de-cookies" className="hover:text-white transition-colors duration-200">Cookies</a>
             </nav>
           </div>
         </div>
