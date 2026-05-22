@@ -102,8 +102,8 @@ function SplineHero() {
         {showFallback && (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="glass rounded-[2rem] p-10 text-center shadow-[0_0_50px_rgba(147,51,234,0.2)] ring-1 ring-white/20 backdrop-blur-3xl">
-              <p className="font-heading text-5xl font-bold text-white mb-1 tracking-tighter">R$6.6M+</p>
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Faturado p/ Clientes</p>
+              <p className="font-heading text-5xl font-bold text-white mb-1 tracking-tighter">+R$10M</p>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Gerados na Plataforma</p>
             </div>
           </div>
         )}
@@ -134,7 +134,7 @@ function SplineHero() {
           <div className="absolute top-8 left-4">
             <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-[0_0_20px_rgba(255,255,255,0.08)]">
               <BarChart3 size={12} className="text-purple-600" />
-              <span className="text-[10px] font-bold text-purple-700 uppercase tracking-widest">326k+ Anúncios</span>
+              <span className="text-[10px] font-bold text-purple-700 uppercase tracking-widest">+R$10M Gerados</span>
             </div>
           </div>
 
@@ -142,7 +142,7 @@ function SplineHero() {
           <div className="absolute top-16 right-2">
             <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-[0_0_20px_rgba(255,255,255,0.08)]">
               <TrendingUp size={12} className="text-purple-600" />
-              <span className="text-[10px] font-bold text-purple-700 uppercase tracking-widest">ROAS 4.2x</span>
+              <span className="text-[10px] font-bold text-purple-700 uppercase tracking-widest">+100 Marcas</span>
             </div>
           </div>
 
@@ -150,7 +150,7 @@ function SplineHero() {
           <div className="absolute bottom-16 left-2">
             <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-[0_0_20px_rgba(255,255,255,0.08)]">
               <Zap size={12} className="text-purple-600" />
-              <span className="text-[10px] font-bold text-purple-700 uppercase tracking-widest">IA Nativa</span>
+              <span className="text-[10px] font-bold text-purple-700 uppercase tracking-widest">Media Buyer Certificado</span>
             </div>
           </div>
 
@@ -158,7 +158,7 @@ function SplineHero() {
           <div className="absolute bottom-6 right-2">
             <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-[0_0_20px_rgba(255,255,255,0.08)]">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2L14.09 8.26L21 9.27L16 14.14L17.18 21.02L12 17.77L6.82 21.02L8 14.14L3 9.27L9.91 8.26L12 2Z" fill="#9333EA"/></svg>
-              <span className="text-[10px] font-bold text-purple-700 uppercase tracking-widest">Parceiro TikTok</span>
+              <span className="text-[10px] font-bold text-purple-700 uppercase tracking-widest">Agência Oficial TikTok</span>
             </div>
           </div>
         </div>
@@ -207,12 +207,12 @@ function FaqItem({ question, answer, index }: { key?: number; question: string; 
 }
 
 const autopilotSteps = [
-  { text: "Conta do TikTok Ads conectada e dados importados" },
-  { text: "IA analisa seu nicho e 326k+ criativos de referência" },
-  { text: "Scripts e hooks gerados para os primeiros 3 segundos" },
-  { text: "Criativos produzidos e publicados em teste A/B" },
-  { text: "CPA, CTR e ROAS monitorados em tempo real" },
-  { text: "Budget redistribuído automaticamente para os winners" },
+  { text: "Diagnóstico de conta, pixel e catálogo concluído" },
+  { text: "TikTok Shop implementado e integração logística rodando" },
+  { text: "Criativos roteirizados, produzidos e em teste A/B" },
+  { text: "Mídia paga sob gestão de mídia buyer certificado" },
+  { text: "Rede de afiliados distribuindo seu produto" },
+  { text: "CPA, ROAS e GMV monitorados pelo gerente exclusivo" },
 ];
 
 function AutopilotSection() {
@@ -270,8 +270,8 @@ function AutopilotSection() {
             className="text-slate-400 font-medium text-xl max-w-xl mx-auto leading-relaxed"
           >
             {isOn
-              ? 'A Conoti está no controle — analisando criativos, otimizando bids e escalando seus resultados no TikTok enquanto você foca na estratégia.'
-              : 'Um clique. É tudo que precisa para a Conoti assumir suas campanhas do TikTok Ads com IA e escalar seus resultados.'
+              ? 'A Conoti está no controle — executando Ads, Shop e a rede de afiliados enquanto sua marca foca em produto e estratégia.'
+              : 'Enquanto a Conoti executa Ads, Shop e a rede de afiliados, sua marca foca no que importa: produto e estratégia.'
             }
           </motion.p>
         </div>
@@ -315,7 +315,7 @@ function AutopilotSection() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-xs font-bold text-purple-400 uppercase tracking-widest shrink-0 ml-4"
                   >
-                    Completo
+                    Ativo
                   </motion.span>
                 )}
               </motion.div>
@@ -338,6 +338,7 @@ const navItems = [
   { label: 'Serviços', href: '#serviços' },
   { label: 'Processo', href: '#processo' },
   { label: 'Resultados', href: '#results' },
+  { label: 'FAQ', href: '#faq' },
 ];
 
 export default function App() {
@@ -479,14 +480,14 @@ export default function App() {
                 transition={{ duration: 0.6 }}
               >
                 <div className="badge-glass text-purple-400 mb-8 backdrop-blur-md">
-                  <Sparkles size={14} className="text-purple-400" />
-                  <span>Hub de Soluções TikTok</span>
+                  <Zap size={14} className="text-purple-400" />
+                  <span>Agência Oficial TikTok</span>
                 </div>
                 <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-7xl leading-[1.05]">
                   Escale no TikTok.<br /><span className="text-gradient-purple">Do criativo à venda.</span>
                 </h1>
                 <p className="mt-8 text-lg text-slate-400 leading-relaxed max-w-lg">
-                  A Conoti é o hub completo de TikTok para sua marca. De criativos a loja, de ads a estratégia — escalamos cada frente com IA, dados e R$6.6M+ faturados para clientes.
+                  A Conoti é a agência oficial TikTok para marcas que querem escalar com previsibilidade. Ads, Shop e Business operados por mídia buyers certificados, com gerente exclusivo e canal direto com a plataforma.
                 </p>
                 <div className="mt-12 flex flex-col sm:flex-row gap-5">
                   <a
@@ -520,7 +521,7 @@ export default function App() {
                   </div>
                   <div className="h-10 w-px bg-white/10" aria-hidden="true" />
                   <p className="text-sm font-medium text-slate-500 uppercase tracking-widest">
-                    <span className="text-white font-bold">R$6.6M+</span> Faturado p/ Clientes
+                    <span className="text-white font-bold">Time Dedicado</span> · Gerente de Contas Exclusivo
                   </p>
                 </div>
               </motion.div>
@@ -566,11 +567,11 @@ export default function App() {
                 <span>Nossa Metodologia</span>
               </div>
               <h2 className="font-heading text-4xl font-bold tracking-tight text-white sm:text-6xl tracking-tighter mb-4">
-                Muitas pessoas nos perguntam <br />
-                <span className="text-gradient-purple">Como isso é Possível.</span>
+                Muitas marcas chegam aqui perguntando <br />
+                <span className="text-gradient-purple">Como a Conoti faz acontecer.</span>
               </h2>
               <p className="text-slate-400 font-medium text-lg max-w-xl mx-auto leading-relaxed">
-                Vamos mergulhar nos pilares que sustentam nossos resultados no TikTok.
+                A resposta está em três pilares que poucos no mercado conseguem entregar juntos.
               </p>
             </motion.div>
 
@@ -591,27 +592,27 @@ export default function App() {
               <div className="h-px w-full" style={{ background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.06) 8%, rgba(255,255,255,0.06) 92%, transparent)' }} />
               {[
                 {
-                  title: "Setup Completo",
-                  desc: "Fazemos todas as integrações necessárias para seu e-commerce rodar do zero — pixel, catálogo, eventos e automações — garantindo ao menos 20% a mais de faturamento já nos primeiros ciclos.",
-                  icon: <BarChart3 className="text-purple-400" size={24} />,
-                  stat: "+20%",
-                  statLabel: "mais faturamento",
+                  title: "Acesso Direto à Fonte",
+                  desc: "Somos agência oficial TikTok. Isso significa atendimento prioritário, novidades em primeira mão e poder real para destravar contas, anúncios e bloqueios — coisa que agência comum não resolve.",
+                  icon: <Zap className="text-purple-400" size={24} />,
+                  stat: "Oficial",
+                  statLabel: "agência tiktok",
                   color: "text-purple-400",
                 },
                 {
-                  title: "Eficiência de Verba",
-                  desc: "Crescimento sem desperdício. Implementamos o setup ideal para escalar seu resultado com menos de 15% a mais de investimento, usando o máximo de cada real na plataforma.",
-                  icon: <Zap className="text-blue-400" size={24} />,
-                  stat: "<15%",
-                  statLabel: "a mais de verba",
+                  title: "Operação Completa",
+                  desc: "Não somos só agência de ads. Cuidamos de mídia, TikTok Shop com GMV MAX, gestão de afiliados e estratégia de presença. Tudo dentro da casa, com um padrão único.",
+                  icon: <Sparkles className="text-blue-400" size={24} />,
+                  stat: "360°",
+                  statLabel: "ads · shop · business",
                   color: "text-blue-400",
                 },
                 {
-                  title: "TikTok Business Total",
-                  desc: "Exploramos 100% do TikTok Business — do tráfego pago ao orgânico — para trazer ao menos 50% mais usuários qualificados ao site, otimizando para o TikTok virar fixo na sua operação.",
-                  icon: <Sparkles className="text-emerald-400" size={24} />,
-                  stat: "+50%",
-                  statLabel: "usuários no site",
+                  title: "Time Certificado, Gerente Exclusivo",
+                  desc: "Mídia buyers certificados pelo TikTok e um gerente de contas exclusivo para cada cliente. Você fala com quem opera. Sem camadas, sem intermediário, sem ruído.",
+                  icon: <CheckCircle2 className="text-emerald-400" size={24} />,
+                  stat: "1:1",
+                  statLabel: "gerente dedicado",
                   color: "text-emerald-400",
                 }
               ].map((service, index) => (
@@ -662,10 +663,10 @@ export default function App() {
                 <span>Por Dentro da Máquina</span>
               </div>
               <h2 className="font-heading text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-                O Motor por Trás da <span className="text-gradient-neon">Sua Escala</span>
+                O Motor por Trás da <span className="text-gradient-neon">Sua Escala no TikTok</span>
               </h2>
               <p className="text-slate-400 font-medium text-lg max-w-xl mx-auto leading-relaxed">
-                Cada peça do nosso sistema trabalha junto para transformar investimento em receita previsível.
+                Cada peça do sistema converte investimento em receita previsível dentro da plataforma.
               </p>
             </motion.div>
 
@@ -682,10 +683,10 @@ export default function App() {
                   <svg className="text-white/5 absolute inset-0 size-full" viewBox="0 0 254 104" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M112.891 97.7022C140.366 97.0802 171.004 94.6715 201.087 87.5116C210.43 85.2881 219.615 82.6412 228.284 78.2473C232.198 76.3179 235.905 73.9942 239.348 71.3124C241.85 69.2557 243.954 66.7571 245.555 63.9408C249.34 57.3235 248.281 50.5341 242.498 45.6109C239.033 42.7237 235.228 40.2703 231.169 38.3054C219.443 32.7209 207.141 28.4382 194.482 25.534C184.013 23.1927 173.358 21.7755 162.64 21.2989C161.376 21.3512 160.113 21.181 158.908 20.796C158.034 20.399 156.857 19.1682 156.962 18.4535C157.115 17.8927 157.381 17.3689 157.743 16.9139C158.104 16.4588 158.555 16.0821 159.067 15.8066C160.14 15.4683 161.274 15.3733 162.389 15.5286C179.805 15.3566 196.626 18.8373 212.998 24.462C220.978 27.2494 228.798 30.4747 236.423 34.1232C240.476 36.1159 244.202 38.7131 247.474 41.8258C254.342 48.2578 255.745 56.9397 251.841 65.4892C249.793 69.8582 246.736 73.6777 242.921 76.6327C236.224 82.0192 228.522 85.4602 220.502 88.2924C205.017 93.7847 188.964 96.9081 172.738 99.2109C153.442 101.949 133.993 103.478 114.506 103.79C91.1468 104.161 67.9334 102.97 45.1169 97.5831C36.0094 95.5616 27.2626 92.1655 19.1771 87.5116C13.839 84.5746 9.1557 80.5802 5.41318 75.7725C-0.54238 67.7259 -1.13794 59.1763 3.25594 50.2827C5.82447 45.3918 9.29572 41.0315 13.4863 37.4319C24.2989 27.5721 37.0438 20.9681 50.5431 15.7272C68.1451 8.8849 86.4883 5.1395 105.175 2.83669C129.045 0.0992292 153.151 0.134761 177.013 2.94256C197.672 5.23215 218.04 9.01724 237.588 16.3889C240.089 17.3418 242.498 18.5197 244.933 19.6446C246.627 20.4387 247.725 21.6695 246.997 23.615C246.455 25.1105 244.814 25.5605 242.63 24.5811C230.322 18.9961 217.233 16.1904 204.117 13.4376C188.761 10.3438 173.2 8.36665 157.558 7.52174C129.914 5.70776 102.154 8.06792 75.2124 14.5228C60.6177 17.8788 46.5758 23.2977 33.5102 30.6161C26.6595 34.3329 20.4123 39.0673 14.9818 44.658C12.9433 46.8071 11.1336 49.1622 9.58207 51.6855C4.87056 59.5336 5.61172 67.2494 11.9246 73.7608C15.2064 77.0494 18.8775 79.925 22.8564 82.3236C31.6176 87.7101 41.3848 90.5291 51.3902 92.5804C70.6068 96.5773 90.0219 97.7419 112.891 97.7022Z" fill="currentColor" />
                   </svg>
-                  <span className="mx-auto block w-fit font-heading text-5xl font-bold text-white">100%</span>
+                  <span className="mx-auto block w-fit font-heading text-5xl font-bold text-white">360°</span>
                 </div>
-                <h3 className="mt-6 font-heading text-2xl font-bold text-white">Zero Achismo</h3>
-                <p className="mt-2 text-sm text-slate-400">Cada decisão é validada por dados de 326k+ anúncios reais antes de ir ao ar.</p>
+                <h3 className="mt-6 font-heading text-2xl font-bold text-white">Diagnóstico Completo</h3>
+                <p className="mt-2 text-sm text-slate-400">Antes de gastar R$1, fazemos auditoria de conta, pixel, catálogo, concorrência e criativos atuais. Você enxerga o gargalo real antes de escalar qualquer coisa.</p>
               </motion.div>
 
               {/* Card 2 — Auditoria */}
@@ -700,8 +701,8 @@ export default function App() {
                   <Search className="m-auto text-purple-400" size={40} strokeWidth={1.5} />
                 </div>
                 <div className="mt-6 text-center space-y-2">
-                  <h3 className="font-heading text-lg font-bold text-white">Diagnóstico da Conta</h3>
-                  <p className="text-sm text-slate-400">Raio-X completo: conta, concorrentes, público e oportunidades que ninguém viu.</p>
+                  <h3 className="font-heading text-lg font-bold text-white">Implementação TikTok Shop</h3>
+                  <p className="text-sm text-slate-400">Ativamos sua loja no TikTok do zero — catálogo, logística, integrações e GMV MAX configurado para escalar volume desde a primeira semana.</p>
                 </div>
               </motion.div>
 
@@ -732,7 +733,7 @@ export default function App() {
                 </div>
                 <div className="mt-6 text-center space-y-2">
                   <h3 className="font-heading text-lg font-bold text-white">Produção & Teste A/B</h3>
-                  <p className="text-sm text-slate-400">IA gera scripts com hooks de 3s, produzimos os criativos e testamos variações até achar os winners.</p>
+                  <p className="text-sm text-slate-400">Roteiros otimizados para prender nos primeiros 3 segundos. Produzimos os criativos, rodamos variações em teste A/B e identificamos os winners reais — sem achismo.</p>
                 </div>
               </motion.div>
 
@@ -750,8 +751,8 @@ export default function App() {
                       <TrendingUp className="m-auto text-emerald-400" size={20} strokeWidth={1.5} />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="font-heading text-lg font-bold text-white">Escala Inteligente</h3>
-                      <p className="text-sm text-slate-400">Winners identificados? O budget migra automaticamente. CPA cai, ROAS sobe — sem intervenção manual.</p>
+                      <h3 className="font-heading text-lg font-bold text-white">Mídia Inteligente</h3>
+                      <p className="text-sm text-slate-400">Identificou o winner? O budget migra. Mídia buyer certificado conduz a escala sem perder eficiência — e sem cair em bloqueio. Cada decisão validada por dados, não por palpite.</p>
                     </div>
                   </div>
                   <div className="relative border-l border-white/5 p-6 sm:-my-0">
@@ -762,9 +763,9 @@ export default function App() {
                     </div>
                     <div className="flex flex-col justify-center h-full space-y-4 pt-4">
                       {[
-                        { label: "CPA", value: "-66%", color: "text-emerald-400" },
-                        { label: "CTR", value: "9x", color: "text-purple-400" },
-                        { label: "ROAS", value: "4.2x", color: "text-blue-400" },
+                        { label: "ROAS", value: "Positivo", color: "text-emerald-400" },
+                        { label: "CPA", value: "Otimizado", color: "text-purple-400" },
+                        { label: "GMV", value: "Crescente", color: "text-blue-400" },
                       ].map((metric, i) => (
                         <div key={i} className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3">
                           <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{metric.label}</span>
@@ -790,18 +791,18 @@ export default function App() {
                       <BarChart3 className="m-auto text-blue-400" size={20} strokeWidth={1.5} />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="font-heading text-lg font-bold text-white">Controle em Tempo Real</h3>
-                      <p className="text-sm text-slate-400">Conectado direto ao TikTok Ads Manager via API. Cada métrica monitorada, cada ajuste em segundos.</p>
+                      <h3 className="font-heading text-lg font-bold text-white">Rede de Afiliados Ativa</h3>
+                      <p className="text-sm text-slate-400">Distribuímos seu produto entre centenas de afiliados qualificados com gestão e otimização contínua. Mais GMV, menos esforço operacional do seu lado.</p>
                     </div>
                   </div>
                   <div className="relative border-l border-white/5 p-6">
-                    <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-4">Status ao vivo</p>
+                    <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-4">Rede em operação</p>
                     <div className="flex flex-col justify-center h-full space-y-2">
                       {[
-                        { name: "Campanha A", status: "Escalando", dot: "bg-emerald-500" },
-                        { name: "Campanha B", status: "Testando", dot: "bg-blue-500" },
+                        { name: "Afiliado A", status: "Ativo", dot: "bg-emerald-500" },
+                        { name: "Afiliado B", status: "Convertendo", dot: "bg-blue-500" },
                         { name: "Criativo #47", status: "Winner", dot: "bg-purple-500" },
-                        { name: "Campanha C", status: "Pausada", dot: "bg-slate-500" },
+                        { name: "Afiliado C", status: "Em teste", dot: "bg-slate-500" },
                       ].map((item, i) => (
                         <div key={i} className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.03] px-4 py-3">
                           <span className={`h-2 w-2 shrink-0 rounded-full ${item.dot}`} />
@@ -870,7 +871,7 @@ export default function App() {
                 {' '}<span className="text-gradient-purple">TikTok Ads, Shop e Business</span>
               </h2>
               <p className="text-slate-400 font-medium text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-                De criativos a loja, de ads a estratégia. A Conoti conecta todas as frentes do TikTok para sua marca escalar.
+                De criativos à loja, de mídia à estratégia. A Conoti opera todas as frentes do TikTok para sua marca crescer com método e suporte direto da plataforma.
               </p>
               <div className="flex items-center justify-center">
                 <a
@@ -899,15 +900,15 @@ export default function App() {
                   <span key={i} className="flex items-center gap-6 whitespace-nowrap text-sm tracking-widest uppercase mx-6">
                     <span className="text-slate-500">Sua Escala é Nossa Missão</span>
                     <span className="text-purple-500/40">✦</span>
-                    <span className="font-bold text-white">Hub Completo TikTok</span>
+                    <span className="font-bold text-white">Agência Oficial TikTok</span>
                     <span className="text-purple-500/40">✦</span>
                     <span className="text-slate-500">Ads, Shop & Business</span>
                     <span className="text-purple-500/40">✦</span>
-                    <span className="font-bold text-white">+200 Marcas Escaladas</span>
+                    <span className="font-bold text-white">+100 Marcas Atendidas</span>
                     <span className="text-purple-500/40">✦</span>
                     <span className="text-slate-500">Do Criativo à Venda</span>
                     <span className="text-purple-500/40">✦</span>
-                    <span className="font-bold text-white">R$6.6M+ Faturado p/ Clientes</span>
+                    <span className="font-bold text-white">+R$10M Gerados na Plataforma</span>
                     <span className="text-purple-500/40">✦</span>
                   </span>
                 ))}
@@ -937,13 +938,13 @@ export default function App() {
             >
               <div className="badge-glass text-emerald-400 mb-6 backdrop-blur-md mx-auto">
                 <TrendingUp size={14} />
-                <span>Números Reais</span>
+                <span>Resultados Reais</span>
               </div>
               <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">
-                O que Acontece Quando a <span className="text-gradient-purple">Conoti Assume.</span>
+                Performance que <span className="text-gradient-purple">se Sustenta.</span>
               </h2>
               <p className="text-slate-400 font-medium text-lg max-w-xl mx-auto leading-relaxed">
-                Resultados reais de marcas que confiaram no nosso hub de soluções TikTok.
+                Marcas que confiaram na Conoti deixaram o achismo no passado.
               </p>
             </motion.div>
 
@@ -958,15 +959,13 @@ export default function App() {
               >
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-600/5 to-transparent pointer-events-none" aria-hidden="true" />
                 <div className="relative z-10">
-                  <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-14">Métricas do último ano</p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-12">
+                  <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-14">Números que falam por si</p>
+                  <div className="grid grid-cols-2 gap-x-10 gap-y-12">
                     {[
-                      { label: "Investido em Ads", value: "R$1.6M+", color: "text-purple-400" },
-                      { label: "Faturado p/ Clientes", value: "R$6.6M+", color: "text-emerald-400" },
-                      { label: "ROAS Geral", value: "4.13x", color: "text-blue-400" },
-                      { label: "Conversões Totais", value: "69.262", color: "text-orange-400" },
-                      { label: "Marcas Vinculadas", value: "40+", color: "text-fuchsia-400" },
-                      { label: "Criativos em Média", value: "7mil+", color: "text-cyan-400" },
+                      { label: "Gerados na plataforma", value: "+R$10M", color: "text-emerald-400" },
+                      { label: "Marcas atendidas", value: "+100", color: "text-purple-400" },
+                      { label: "Agência TikTok", value: "Oficial", color: "text-blue-400" },
+                      { label: "Gerente exclusivo por cliente", value: "Dedicado", color: "text-fuchsia-400" },
                     ].map((stat, i) => (
                       <motion.div
                         key={i}
@@ -1034,7 +1033,7 @@ export default function App() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-28 lg:py-44 relative">
+        <section id="faq" className="py-28 lg:py-44 relative">
           <div className="mx-auto max-w-3xl px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1048,7 +1047,7 @@ export default function App() {
                 <span>Tire Suas Dúvidas</span>
               </div>
               <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">
-                Perguntas <span className="text-gradient-purple">Frequentes</span>
+                Perguntas que <span className="text-gradient-purple">recebemos toda semana.</span>
               </h2>
             </motion.div>
 
@@ -1056,27 +1055,35 @@ export default function App() {
               {[
                 {
                   q: "O que a Conoti faz exatamente?",
-                  a: "Somos um hub completo de soluções para TikTok. Cuidamos de Ads (criativos + mídia), Shop (sua loja dentro do TikTok) e Business (estratégia de presença e conteúdo). Tudo integrado, com IA e dados."
+                  a: "Somos um hub completo de TikTok Business. Operamos TikTok Ads (mídia + criativos), TikTok Shop (loja, afiliados e GMV MAX) e damos suporte estratégico para a sua marca crescer dentro da plataforma — com o respaldo de partner oficial."
                 },
                 {
-                  q: "Preciso já ter uma conta no TikTok Ads?",
-                  a: "Não. Criamos e configuramos tudo do zero se necessário — conta, pixel, catálogo de produtos e estrutura de campanhas. Se já tiver, fazemos uma auditoria completa antes de começar."
+                  q: "Para qual perfil de marca a Conoti faz mais sentido?",
+                  a: "Trabalhamos com marcas de fashion, suplementos e cosméticos que tenham estoque no Brasil ou produção própria, e que já faturem a partir de R$100k/mês. É o perfil onde o TikTok Shop e a rede de afiliados geram retorno mais rápido."
                 },
                 {
-                  q: "Qual o investimento mínimo em mídia?",
-                  a: "Recomendamos a partir de R$5.000/mês em mídia para ter volume suficiente de dados e testes. Para operações de TikTok Shop, o investimento pode variar conforme o catálogo."
+                  q: "Preciso ter conta no TikTok Ads ou TikTok Shop antes?",
+                  a: "Não. Configuramos tudo do zero — conta, pixel, catálogo, loja, integrações. Se você já tem, fazemos auditoria completa e ajustamos antes de qualquer movimento de escala."
                 },
                 {
-                  q: "Em quanto tempo vejo resultados?",
-                  a: "Os primeiros criativos entram em teste na primeira semana. Resultados consistentes de escala geralmente aparecem entre 30 e 45 dias, quando já temos dados suficientes para otimizar com IA."
+                  q: "Vocês resolvem bloqueio de conta e anúncios?",
+                  a: "Sim. Como agência oficial TikTok, temos canal direto com a plataforma para destravar contas, anúncios e ajustar políticas. É um dos principais motivos de marcas migrarem para cá."
+                },
+                {
+                  q: "Como funciona o TikTok Shop com vocês?",
+                  a: "Implementamos a loja, configuramos catálogo e logística, ativamos afiliados qualificados e otimizamos vendas com GMV MAX. Você foca no produto. A gente cuida do volume."
+                },
+                {
+                  q: "Qual o investimento mínimo?",
+                  a: "Recomendamos a partir de R$5.000/mês em mídia para gerar dados suficientes de teste e otimização. Para TikTok Shop, o investimento varia conforme catálogo e operação — alinhamos isso no diagnóstico."
+                },
+                {
+                  q: "Em quanto tempo vejo resultado?",
+                  a: "Os primeiros criativos entram em teste na primeira semana. Resultados consistentes de escala e GMV aparecem geralmente entre 30 e 45 dias, depois do ciclo natural de aprendizado da plataforma."
                 },
                 {
                   q: "Vocês produzem os criativos ou eu preciso fornecer?",
-                  a: "Nós produzimos tudo. Temos uma rede de criadores especializados e uma IA que gera scripts otimizados para os primeiros 3 segundos. Você só aprova."
-                },
-                {
-                  q: "Como funciona o TikTok Shop?",
-                  a: "É a loja nativa dentro do TikTok. O usuário vê o produto no vídeo e compra sem sair do app. Configuramos sua loja, catálogo, logística e estratégia de conteúdo para vender direto no feed."
+                  a: "Nós produzimos. Roteiros, vídeos e variações otimizadas para os primeiros 3 segundos — onde a maior parte das marcas perde a venda. Você só aprova."
                 },
               ].map((item, i) => (
                 <FaqItem key={i} question={item.q} answer={item.a} index={i} />
@@ -1107,8 +1114,8 @@ export default function App() {
                   <ArrowRight size={14} />
                   <span>Comece Agora</span>
                 </div>
-                <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">Cadastre-se e receba o contato do nosso time em até 5 minutos</h2>
-                <p className="text-slate-400 font-medium text-lg">Preencha os dados abaixo para receber sua análise gratuita.</p>
+                <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">Fale com o nosso time em até <span className="text-gradient-purple">5 minutos.</span></h2>
+                <p className="text-slate-400 font-medium text-lg">Preencha os dados e um especialista da Conoti faz contato com um diagnóstico inicial gratuito da sua operação no TikTok.</p>
               </motion.div>
 
               <div className="glass-dark rounded-[2.5rem] p-8 lg:p-12 ring-1 ring-white/10 shadow-2xl relative overflow-hidden">
@@ -1124,8 +1131,8 @@ export default function App() {
                     <div className="mb-8 rounded-full bg-emerald-500/20 p-6 text-emerald-400 border border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
                       <CheckCircle2 size={64} />
                     </div>
-                    <h3 className="font-heading text-3xl font-bold text-white mb-4 tracking-tight">Recebemos seus dados!</h3>
-                    <p className="text-slate-400 text-lg">Nosso time entra em contato em até 5 minutos.</p>
+                    <h3 className="font-heading text-3xl font-bold text-white mb-4 tracking-tight">Recebido.</h3>
+                    <p className="text-slate-400 text-lg">Um especialista da Conoti entra em contato pelo WhatsApp em até 5 minutos.</p>
                     <button
                       onClick={() => { setFormStatus('idle'); setFormStep(0); }}
                       className="mt-10 text-purple-400 font-bold hover:text-purple-300 transition-colors duration-200 uppercase tracking-widest text-sm cursor-pointer"
@@ -1161,7 +1168,7 @@ export default function App() {
                               <input id={nameId} required type="text" autoComplete="name" className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white placeholder:text-slate-700 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200" placeholder="Nome completo" />
                             </div>
                             <div className="space-y-3">
-                              <label htmlFor={emailId} className="text-xs font-bold text-slate-500 uppercase tracking-widest">E-mail</label>
+                              <label htmlFor={emailId} className="text-xs font-bold text-slate-500 uppercase tracking-widest">E-mail corporativo</label>
                               <input id={emailId} required type="email" autoComplete="email" className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white placeholder:text-slate-700 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200" placeholder="email@empresa.com" />
                             </div>
                             <div className="space-y-3">
@@ -1184,30 +1191,30 @@ export default function App() {
                             className="space-y-6"
                           >
                             <div className="space-y-3">
-                              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Nome da empresa</label>
-                              <input type="text" className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white placeholder:text-slate-700 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200" placeholder="Sua empresa" />
+                              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Nome da marca</label>
+                              <input type="text" className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white placeholder:text-slate-700 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200" placeholder="Sua marca" />
+                            </div>
+                            <div className="space-y-3">
+                              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Site ou Instagram da marca</label>
+                              <input type="text" className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white placeholder:text-slate-700 focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200" placeholder="seusite.com.br ou @suamarca" />
                             </div>
                             <div className="space-y-3">
                               <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Segmento</label>
                               <select className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200 appearance-none cursor-pointer">
-                                <option className="bg-[#0C0E1D]">E-commerce</option>
-                                <option className="bg-[#0C0E1D]">Infoproduto</option>
-                                <option className="bg-[#0C0E1D]">SaaS / App</option>
-                                <option className="bg-[#0C0E1D]">Serviços</option>
-                                <option className="bg-[#0C0E1D]">Varejo Físico</option>
+                                <option className="bg-[#0C0E1D]">Fashion</option>
+                                <option className="bg-[#0C0E1D]">Suplementos</option>
+                                <option className="bg-[#0C0E1D]">Cosméticos</option>
                                 <option className="bg-[#0C0E1D]">Outro</option>
                               </select>
                             </div>
                             <div className="space-y-3">
-                              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Já anuncia no TikTok?</label>
-                              <div className="grid grid-cols-2 gap-3">
-                                {['Sim, ativamente', 'Já testei', 'Nunca anunciei', 'Só no Meta/Google'].map((opt) => (
-                                  <label key={opt} className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/5 px-5 py-3.5 cursor-pointer hover:border-purple-500/30 hover:bg-white/[0.04] transition-all duration-200">
-                                    <input type="radio" name="tiktok_experience" value={opt} className="accent-purple-600" />
-                                    <span className="text-sm text-slate-300">{opt}</span>
-                                  </label>
-                                ))}
-                              </div>
+                              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Faturamento mensal aproximado</label>
+                              <select className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200 appearance-none cursor-pointer">
+                                <option className="bg-[#0C0E1D]">Até R$100k</option>
+                                <option className="bg-[#0C0E1D]">R$100k – R$500k</option>
+                                <option className="bg-[#0C0E1D]">R$500k – R$1M</option>
+                                <option className="bg-[#0C0E1D]">R$1M+</option>
+                              </select>
                             </div>
                             <div className="flex gap-3">
                               <button type="button" onClick={() => setFormStep(0)} className="flex-1 rounded-2xl border border-white/10 py-4 text-base font-bold text-slate-400 hover:text-white hover:border-white/20 transition-all duration-200 cursor-pointer">
@@ -1230,14 +1237,34 @@ export default function App() {
                             className="space-y-6"
                           >
                             <div className="space-y-3">
-                              <label htmlFor={budgetId} className="text-xs font-bold text-slate-500 uppercase tracking-widest">Investimento mensal em ads</label>
-                              <select id={budgetId} onChange={(e) => setIsHighBudget(e.target.value === 'above100k')} className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200 appearance-none cursor-pointer">
-                                <option value="below5k" className="bg-[#0C0E1D]">Menos de R$ 5.000</option>
-                                <option value="5k-10k" className="bg-[#0C0E1D]">R$ 5.000 - R$ 10.000</option>
-                                <option value="10k-50k" className="bg-[#0C0E1D]">R$ 10.000 - R$ 50.000</option>
-                                <option value="50k-100k" className="bg-[#0C0E1D]">R$ 50.000 - R$ 100.000</option>
-                                <option value="above100k" className="bg-[#0C0E1D]">Acima de R$ 100.000</option>
+                              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Já investe em TikTok Ads?</label>
+                              <div className="grid grid-cols-2 gap-3">
+                                {['Sim', 'Não'].map((opt) => (
+                                  <label key={opt} className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/5 px-5 py-3.5 cursor-pointer hover:border-purple-500/30 hover:bg-white/[0.04] transition-all duration-200">
+                                    <input type="radio" name="tiktok_ads_active" value={opt} className="accent-purple-600" />
+                                    <span className="text-sm text-slate-300">{opt}</span>
+                                  </label>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="space-y-3">
+                              <label htmlFor={budgetId} className="text-xs font-bold text-slate-500 uppercase tracking-widest">Investimento previsto em mídia/mês</label>
+                              <select id={budgetId} onChange={(e) => setIsHighBudget(e.target.value === '50k+')} className="w-full rounded-2xl border border-white/5 bg-white/5 px-6 py-4 text-white focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 outline-none transition-all duration-200 appearance-none cursor-pointer">
+                                <option value="5k-15k" className="bg-[#0C0E1D]">R$ 5.000 – R$ 15.000</option>
+                                <option value="15k-50k" className="bg-[#0C0E1D]">R$ 15.000 – R$ 50.000</option>
+                                <option value="50k+" className="bg-[#0C0E1D]">R$ 50.000+</option>
                               </select>
+                            </div>
+                            <div className="space-y-3">
+                              <label className="text-xs font-bold text-slate-500 uppercase tracking-widest">Tem TikTok Shop ativo?</label>
+                              <div className="grid grid-cols-3 gap-3">
+                                {['Sim', 'Não', 'Quero implementar'].map((opt) => (
+                                  <label key={opt} className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/5 px-4 py-3.5 cursor-pointer hover:border-purple-500/30 hover:bg-white/[0.04] transition-all duration-200">
+                                    <input type="radio" name="tiktok_shop_status" value={opt} className="accent-purple-600 shrink-0" />
+                                    <span className="text-sm text-slate-300">{opt}</span>
+                                  </label>
+                                ))}
+                              </div>
                             </div>
 
                             <AnimatePresence mode="wait">
@@ -1287,7 +1314,7 @@ export default function App() {
                                 Voltar
                               </button>
                               <button type="submit" disabled={formStatus === 'submitting'} className="flex-[2] rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 py-4 text-base font-bold text-white shadow-[0_0_30px_rgba(147,51,234,0.2)] hover:shadow-[0_0_40px_rgba(147,51,234,0.3)] hover:from-purple-500 hover:to-blue-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all duration-200">
-                                {formStatus === 'submitting' ? 'Enviando...' : isHighBudget ? 'Solicitar Contato Direto' : 'Solicitar Análise Gratuita'}
+                                {formStatus === 'submitting' ? 'Enviando...' : 'Quero meu diagnóstico'}
                               </button>
                             </div>
                           </motion.div>
@@ -1309,22 +1336,54 @@ export default function App() {
         <div className="absolute inset-0 bg-gradient-to-t from-purple-950/20 via-[#0C0E1D] to-transparent pointer-events-none" aria-hidden="true" />
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-purple-600/5 blur-[120px] pointer-events-none" aria-hidden="true" />
 
-        {/* Top section - links */}
+        {/* Top section - brand + links */}
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 py-16">
-          <div className="grid gap-12 md:grid-cols-3 items-center">
-            <div>
+          <div className="grid gap-12 md:grid-cols-3">
+            {/* Brand */}
+            <div className="space-y-5">
               <img src="/logo-conoti.png" alt="Conoti" className="h-4 w-auto opacity-70" />
+              <p className="text-sm text-slate-400 leading-relaxed max-w-xs">
+                Agência oficial TikTok para marcas que escalam.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="badge-glass text-purple-300 text-[10px] normal-case tracking-normal">Agência Oficial TikTok</span>
+                <span className="badge-glass text-emerald-300 text-[10px] normal-case tracking-normal">Media Buyer Certificado</span>
+              </div>
             </div>
 
-            <nav className="flex justify-center gap-10 text-xs font-bold uppercase tracking-widest text-slate-500" aria-label="Links legais">
-              <a href="#" className="hover:text-white transition-colors duration-200 cursor-pointer">Termos</a>
-              <a href="#" className="hover:text-white transition-colors duration-200 cursor-pointer">Privacidade</a>
-              <a href="#" className="hover:text-white transition-colors duration-200 cursor-pointer">Cookies</a>
-            </nav>
+            {/* Site links */}
+            <div className="space-y-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-600">Site</p>
+              <nav className="flex flex-col gap-3 text-sm font-medium text-slate-400" aria-label="Links do site">
+                <a href="#serviços" className="hover:text-white transition-colors duration-200">Serviços</a>
+                <a href="#processo" className="hover:text-white transition-colors duration-200">Processo</a>
+                <a href="#results" className="hover:text-white transition-colors duration-200">Resultados</a>
+                <a href="#faq" className="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="#contact" className="hover:text-white transition-colors duration-200">Contato</a>
+              </nav>
+            </div>
 
-            <p className="text-xs font-medium text-slate-600 tracking-wide md:text-right">
-              &copy; 2026 Conoti Growth Agency.
+            {/* Solutions */}
+            <div className="space-y-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-600">Soluções</p>
+              <nav className="flex flex-col gap-3 text-sm font-medium text-slate-400" aria-label="Soluções">
+                <a href="#serviços" className="hover:text-white transition-colors duration-200">TikTok Ads</a>
+                <a href="#serviços" className="hover:text-white transition-colors duration-200">TikTok Shop</a>
+                <a href="#serviços" className="hover:text-white transition-colors duration-200">TikTok Business</a>
+                <a href="#serviços" className="hover:text-white transition-colors duration-200">Rede de Afiliados</a>
+              </nav>
+            </div>
+          </div>
+
+          <div className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="text-xs font-medium text-slate-600 tracking-wide">
+              &copy; 2026 Conoti. Todos os direitos reservados.
             </p>
+            <nav className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-600" aria-label="Links legais">
+              <a href="#" className="hover:text-white transition-colors duration-200">Termos</a>
+              <a href="#" className="hover:text-white transition-colors duration-200">Privacidade</a>
+              <a href="#" className="hover:text-white transition-colors duration-200">Cookies</a>
+            </nav>
           </div>
         </div>
 
