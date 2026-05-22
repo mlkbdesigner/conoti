@@ -549,6 +549,25 @@ export default function App() {
           </div>
         </section>
 
+        {/* Social Proof */}
+        <section className="border-y border-white/5 relative" aria-label="Marcas parceiras">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {partnerLogos.map((logo) => (
+              <div
+                key={logo.alt}
+                className="flex items-center justify-center py-8 md:py-10 border-r border-b md:border-b-0 border-white/10 last:border-r-0 hover:bg-white/[0.02] transition-colors duration-300"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-6 md:h-7 select-none brightness-0 invert opacity-30 hover:opacity-70 transition-opacity duration-300"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Hub de Soluções Banner */}
         <section className="pt-20 pb-28 lg:pt-28 lg:pb-44 relative overflow-hidden border-y border-white/5">
           {/* Layered background */}
@@ -587,25 +606,6 @@ export default function App() {
                 </a>
               </div>
             </motion.div>
-          </div>
-        </section>
-
-        {/* Social Proof */}
-        <section className="border-y border-white/5 relative" aria-label="Marcas parceiras">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {partnerLogos.map((logo) => (
-              <div
-                key={logo.alt}
-                className="flex items-center justify-center py-8 md:py-10 border-r border-b md:border-b-0 border-white/10 last:border-r-0 hover:bg-white/[0.02] transition-colors duration-300"
-              >
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-6 md:h-7 select-none brightness-0 invert opacity-30 hover:opacity-70 transition-opacity duration-300"
-                  loading="lazy"
-                />
-              </div>
-            ))}
           </div>
         </section>
 
