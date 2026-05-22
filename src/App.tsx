@@ -568,47 +568,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* Hub de Soluções Banner */}
-        <section className="pt-20 pb-28 lg:pt-28 lg:pb-44 relative overflow-hidden border-y border-white/5">
-          {/* Layered background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-[#0C0E1D] to-purple-950/20 pointer-events-none" aria-hidden="true" />
-          <div className="absolute inset-0 z-0" aria-hidden="true">
-            <InfiniteGrid />
-          </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-[150px] pointer-events-none" aria-hidden="true" />
-          <div className="absolute top-0 left-[20%] w-[300px] h-[300px] rounded-full bg-fuchsia-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
-          <div className="absolute bottom-0 right-[20%] w-[300px] h-[300px] rounded-full bg-blue-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
-          <div className="mx-auto max-w-4xl px-6 relative z-10 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter leading-tight mb-6">
-                Seu Hub Completo de{' '}
-                <span className="inline-flex align-middle mx-1 rounded-2xl overflow-hidden h-9 sm:h-12 w-20 sm:w-28 relative">
-                  <span className="absolute inset-0 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-blue-600 animate-[spin_6s_linear_infinite] scale-150 blur-sm" />
-                  <span className="absolute inset-0 bg-gradient-to-br from-purple-500/80 via-pink-500/60 to-indigo-600/80 backdrop-blur-sm" />
-                  <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.2),transparent_60%)]" />
-                </span>
-                {' '}<span className="text-gradient-purple">TikTok Ads, Shop e Business</span>
-              </h2>
-              <p className="text-slate-400 font-medium text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-                De criativos à loja, de mídia à estratégia. A Conoti opera todas as frentes do TikTok para sua marca crescer com método e suporte direto da plataforma.
-              </p>
-              <div className="flex items-center justify-center">
-                <a
-                  href="#contact"
-                  className="rounded-full bg-purple-600/40 backdrop-blur-xl border border-purple-400/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_24px_rgba(147,51,234,0.3)] px-12 py-5 text-lg font-bold text-white hover:bg-purple-500/50 hover:border-purple-400/30 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_40px_rgba(147,51,234,0.4)] transition-all duration-200 cursor-pointer"
-                >
-                  Começar Agora
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* Services Section */}
         <section id="serviços" className="py-28 lg:py-44 relative">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-purple-900/10 blur-[150px] pointer-events-none" aria-hidden="true" />
@@ -901,6 +860,47 @@ export default function App() {
             </svg>
           </motion.div>
         </div>
+
+        {/* CTA Banner */}
+        <section className="pt-20 pb-28 lg:pt-28 lg:pb-44 relative overflow-hidden border-y border-white/5">
+          {/* Layered background */}
+          <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-[#0C0E1D] to-purple-950/20 pointer-events-none" aria-hidden="true" />
+          <div className="absolute inset-0 z-0" aria-hidden="true">
+            <InfiniteGrid />
+          </div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-[150px] pointer-events-none" aria-hidden="true" />
+          <div className="absolute top-0 left-[20%] w-[300px] h-[300px] rounded-full bg-fuchsia-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
+          <div className="absolute bottom-0 right-[20%] w-[300px] h-[300px] rounded-full bg-blue-600/8 blur-[120px] pointer-events-none" aria-hidden="true" />
+          <div className="mx-auto max-w-4xl px-6 relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter leading-tight mb-6">
+                Seu Hub Completo de{' '}
+                <span className="inline-flex align-middle mx-1 rounded-2xl overflow-hidden h-9 sm:h-12 w-20 sm:w-28 relative">
+                  <span className="absolute inset-0 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-blue-600 animate-[spin_6s_linear_infinite] scale-150 blur-sm" />
+                  <span className="absolute inset-0 bg-gradient-to-br from-purple-500/80 via-pink-500/60 to-indigo-600/80 backdrop-blur-sm" />
+                  <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.2),transparent_60%)]" />
+                </span>
+                {' '}<span className="text-gradient-purple">TikTok Ads, Shop e Business</span>
+              </h2>
+              <p className="text-slate-400 font-medium text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+                De criativos à loja, de mídia à estratégia. A Conoti opera todas as frentes do TikTok para sua marca crescer com método e suporte direto da plataforma.
+              </p>
+              <div className="flex items-center justify-center">
+                <a
+                  href="#contact"
+                  className="rounded-full bg-purple-600/40 backdrop-blur-xl border border-purple-400/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_24px_rgba(147,51,234,0.3)] px-12 py-5 text-lg font-bold text-white hover:bg-purple-500/50 hover:border-purple-400/30 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_40px_rgba(147,51,234,0.4)] transition-all duration-200 cursor-pointer"
+                >
+                  Começar Agora
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
         {/* Autopilot Toggle Section */}
         <AutopilotSection />
