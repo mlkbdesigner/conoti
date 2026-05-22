@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
 
@@ -212,6 +213,10 @@ export const LEGAL_PAGES: Record<string, LegalContent> = {
 
 export function LegalPage({ slug }: { slug: keyof typeof LEGAL_PAGES }) {
   const content = LEGAL_PAGES[slug];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
 
   if (!content) return null;
 
