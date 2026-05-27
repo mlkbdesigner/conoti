@@ -1000,51 +1000,68 @@ export default function App() {
                 </div>
               </motion.div>
 
-              {/* Right bento - Testimonials (2 cards) */}
-              <div className="grid gap-4 grid-rows-2 h-full">
-                {[
-                  {
-                    name: "Ricardo Santos",
-                    role: "CEO @ TechBrand",
-                    text: "O TikTok passou de experimental para nossa maior fonte de receita em tempo recorde.",
-                    seed: "ceo-dark"
-                  },
-                  {
-                    name: "Ana Oliveira",
-                    role: "CMO @ FashionHub",
-                    text: "Nossas campanhas de UGC nunca performaram tão bem. Criatividade inigualável.",
-                    seed: "ana"
-                  },
-                ].map((testimonial, i) => (
-                  <motion.figure
-                    key={i}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.08 }}
-                    className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 flex flex-col justify-between transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(147,51,234,0.08)] h-full"
-                  >
-                    <blockquote>
-                      <p className="text-sm font-medium leading-relaxed text-slate-300 mb-6">
-                        &ldquo;{testimonial.text}&rdquo;
-                      </p>
-                    </blockquote>
-                    <figcaption className="flex items-center gap-3">
-                      <img
-                        className="h-9 w-9 rounded-full object-cover ring-2 ring-purple-500/30"
-                        src={`https://picsum.photos/seed/${testimonial.seed}/100/100`}
-                        alt={`Foto de ${testimonial.name}`}
-                        loading="lazy"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div>
-                        <p className="font-bold text-white text-xs">{testimonial.name}</p>
-                        <p className="text-purple-400 text-[9px] font-bold uppercase tracking-wider">{testimonial.role}</p>
-                      </div>
-                    </figcaption>
-                  </motion.figure>
-                ))}
-              </div>
+              {/* Right bento - Case Study Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 lg:p-7 flex flex-col gap-5 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(147,51,234,0.08)] h-full"
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between">
+                  <span className="badge-glass text-purple-300 text-[10px] normal-case tracking-normal">
+                    <Sparkles size={10} />
+                    Caso real
+                  </span>
+                  <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Últimos 30 dias</span>
+                </div>
+
+                {/* WhatsApp-style bubble */}
+                <div className="rounded-xl bg-white/[0.03] border border-white/5 p-4 relative">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-7 w-7 rounded-full bg-emerald-500/20 flex items-center justify-center ring-1 ring-emerald-500/30">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="#10B981" aria-hidden="true"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.198.297-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.575-1.516-3.39-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.875 2.909 4.371 2.909 7.026-.004 5.444-4.46 9.86-9.935 9.86M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
+                    </div>
+                    <p className="text-xs font-bold text-white">Cliente Conoti</p>
+                    <span className="ml-auto text-[9px] text-slate-600">10:37</span>
+                  </div>
+                  <div className="text-sm text-slate-300 leading-relaxed space-y-0.5 pl-9">
+                    <p>Bom dia</p>
+                    <p>171 contatos</p>
+                    <p>61 agendamentos</p>
+                    <p>42 vendas</p>
+                    <p className="text-emerald-400 font-bold">R$ 75.918,00</p>
+                  </div>
+                </div>
+
+                {/* 4 mini stats */}
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { label: "Chamadas WhatsApp", value: "171", color: "text-purple-400" },
+                    { label: "Agendamentos", value: "61", color: "text-blue-400" },
+                    { label: "Compareceram", value: "54", color: "text-orange-400" },
+                    { label: "Vendas no mês", value: "42", color: "text-fuchsia-400" },
+                  ].map((stat, i) => (
+                    <div key={i} className="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3">
+                      <p className={`font-heading text-xl font-bold ${stat.color}`}>{stat.value}</p>
+                      <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Investimento vs Vendas — ROI highlight */}
+                <div className="grid grid-cols-2 gap-2 mt-auto">
+                  <div className="rounded-xl border border-purple-500/20 bg-purple-500/[0.06] px-4 py-3.5">
+                    <p className="text-[9px] font-bold text-purple-300 uppercase tracking-widest mb-1">Investimento</p>
+                    <p className="font-heading text-base font-bold text-white">R$ 4.967</p>
+                  </div>
+                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] px-4 py-3.5">
+                    <p className="text-[9px] font-bold text-emerald-300 uppercase tracking-widest mb-1">Vendas</p>
+                    <p className="font-heading text-base font-bold text-white">R$ 75.918</p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
