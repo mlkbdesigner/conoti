@@ -977,7 +977,7 @@ export default function App() {
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-600/5 to-transparent pointer-events-none" aria-hidden="true" />
                 <div className="relative z-10">
                   <p className="text-sm font-bold text-purple-400 uppercase tracking-[0.2em] mb-14">Números que falam por si</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 lg:gap-x-10 gap-y-10 sm:gap-y-12">
+                  <div className="flex flex-col gap-10 lg:gap-12">
                     {[
                       { label: "Gerados na plataforma", value: "+R$10M", color: "text-emerald-400" },
                       { label: "Marcas atendidas", value: "+100", color: "text-purple-400" },
@@ -990,9 +990,9 @@ export default function App() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: i * 0.08 }}
-                        className="space-y-2 min-w-0"
+                        className="space-y-2"
                       >
-                        <p className={`font-heading text-4xl sm:text-3xl lg:text-4xl font-bold tracking-tighter ${stat.color}`}>{stat.value}</p>
+                        <p className={`font-heading text-4xl lg:text-5xl font-bold tracking-tighter ${stat.color}`}>{stat.value}</p>
                         <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
                       </motion.div>
                     ))}
