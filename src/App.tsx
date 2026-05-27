@@ -977,12 +977,12 @@ export default function App() {
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-600/5 to-transparent pointer-events-none" aria-hidden="true" />
                 <div className="relative z-10">
                   <p className="text-sm font-bold text-purple-400 uppercase tracking-[0.2em] mb-14">Números que falam por si</p>
-                  <div className="grid grid-cols-2 gap-x-10 gap-y-12">
+                  <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8 lg:gap-x-10 gap-y-8 sm:gap-y-12">
                     {[
                       { label: "Gerados na plataforma", value: "+R$10M", color: "text-emerald-400" },
                       { label: "Marcas atendidas", value: "+100", color: "text-purple-400" },
                       { label: "Agência TikTok", value: "Oficial", color: "text-blue-400" },
-                      { label: "Gerente exclusivo por cliente", value: "Dedicado", color: "text-fuchsia-400" },
+                      { label: "Gerente exclusivo", value: "Dedicado", color: "text-fuchsia-400" },
                     ].map((stat, i) => (
                       <motion.div
                         key={i}
@@ -990,9 +990,9 @@ export default function App() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: i * 0.08 }}
-                        className="space-y-2"
+                        className="space-y-2 min-w-0"
                       >
-                        <p className={`font-heading text-3xl lg:text-4xl font-bold ${stat.color}`}>{stat.value}</p>
+                        <p className={`font-heading text-xl sm:text-2xl lg:text-4xl font-bold tracking-tighter break-words ${stat.color}`}>{stat.value}</p>
                         <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
                       </motion.div>
                     ))}
