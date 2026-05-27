@@ -1070,36 +1070,38 @@ export default function App() {
                       },
                     ].map((c, i) => (
                       <CarouselItem key={i}>
-                        <div className="flex flex-col gap-3">
-                          {/* Print */}
-                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative h-44 sm:h-52">
+                        <div className="flex flex-col gap-2.5">
+                          {/* Print with overlaid ROAS badge */}
+                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative h-32 sm:h-36">
                             <img
                               src={c.image}
                               alt={`Print TikTok Ads — ${c.period}`}
                               className="w-full h-full object-cover object-top block"
                               loading="lazy"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                          </div>
-                          {/* Period */}
-                          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest text-center">{c.period}</p>
-                          {/* ROAS big */}
-                          <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] p-4 text-center">
-                            <p className="font-heading text-4xl font-bold text-emerald-400 leading-none">{c.roas}</p>
-                            <p className="text-[10px] font-bold text-emerald-300 uppercase tracking-widest mt-2">ROAS médio no período</p>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                            <div className="absolute top-2 left-2 right-2 flex items-center justify-between">
+                              <span className="text-[9px] font-bold text-white/80 uppercase tracking-widest bg-black/40 backdrop-blur-md px-2 py-1 rounded">{c.period}</span>
+                            </div>
+                            <div className="absolute bottom-2 left-2 right-2 flex items-end justify-between">
+                              <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/20 backdrop-blur-md px-3 py-1.5">
+                                <p className="font-heading text-2xl font-bold text-emerald-300 leading-none">{c.roas}</p>
+                                <p className="text-[8px] font-bold text-emerald-200 uppercase tracking-widest mt-0.5">ROAS médio</p>
+                              </div>
+                            </div>
                           </div>
                           {/* 3 mini stats */}
                           <div className="grid grid-cols-3 gap-2">
-                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2.5 text-center">
-                              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-1">Investido</p>
+                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2 text-center">
+                              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Investido</p>
                               <p className="font-heading text-sm font-bold text-purple-400">{c.invested}</p>
                             </div>
-                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2.5 text-center">
-                              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-1">Faturado</p>
+                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2 text-center">
+                              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Faturado</p>
                               <p className="font-heading text-sm font-bold text-white">{c.revenue}</p>
                             </div>
-                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2.5 text-center">
-                              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-1">Compras</p>
+                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2 text-center">
+                              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Compras</p>
                               <p className="font-heading text-sm font-bold text-blue-400">{c.purchases}</p>
                             </div>
                           </div>
@@ -1107,10 +1109,9 @@ export default function App() {
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <div className="flex items-center justify-between gap-3 pt-2">
-                    <CarouselPrevious className="static translate-y-0 border-white/10 bg-white/5 text-white hover:bg-white/10" />
-                    <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Arrastar / navegar</span>
-                    <CarouselNext className="static translate-y-0 border-white/10 bg-white/5 text-white hover:bg-white/10" />
+                  <div className="flex items-center justify-end gap-2 pt-1">
+                    <CarouselPrevious className="static translate-y-0 h-8 w-8 border-white/10 bg-white/5 text-white hover:bg-white/10" />
+                    <CarouselNext className="static translate-y-0 h-8 w-8 border-white/10 bg-white/5 text-white hover:bg-white/10" />
                   </div>
                 </Carousel>
               </motion.div>
