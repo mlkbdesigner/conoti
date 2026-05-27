@@ -1079,29 +1079,29 @@ export default function App() {
                               className="w-full h-auto block"
                               loading="lazy"
                             />
-                            <div className="absolute top-3 left-3">
-                              <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg ring-1 ring-white/10">{c.period}</span>
+                            <div className="absolute top-4 left-4">
+                              <span className="text-xs font-bold text-white uppercase tracking-widest bg-black/60 backdrop-blur-md px-4 py-2 rounded-lg ring-1 ring-white/10">{c.period}</span>
                             </div>
-                            <div className="absolute top-3 right-3">
-                              <div className="rounded-lg ring-1 ring-emerald-400/40 bg-emerald-500/30 backdrop-blur-md px-3 py-1.5">
-                                <p className="font-heading text-xl font-bold text-emerald-200 leading-none">{c.roas}</p>
-                                <p className="text-[8px] font-bold text-emerald-100 uppercase tracking-widest mt-0.5">ROAS médio</p>
+                            <div className="absolute top-4 right-4">
+                              <div className="rounded-xl ring-1 ring-emerald-400/40 bg-emerald-500/30 backdrop-blur-md px-4 py-2">
+                                <p className="font-heading text-3xl font-bold text-emerald-200 leading-none">{c.roas}</p>
+                                <p className="text-[10px] font-bold text-emerald-100 uppercase tracking-widest mt-1">ROAS médio</p>
                               </div>
                             </div>
                           </div>
                           {/* 3 mini stats */}
-                          <div className="grid grid-cols-3 gap-2">
-                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2 text-center">
-                              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Investido</p>
-                              <p className="font-heading text-sm font-bold text-purple-400">{c.invested}</p>
+                          <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                            <div className="rounded-xl border border-white/5 bg-white/[0.02] px-4 sm:px-6 py-4 sm:py-5 text-center">
+                              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Investido</p>
+                              <p className="font-heading text-xl sm:text-3xl font-bold text-purple-400 tracking-tight">{c.invested}</p>
                             </div>
-                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2 text-center">
-                              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Faturado</p>
-                              <p className="font-heading text-sm font-bold text-white">{c.revenue}</p>
+                            <div className="rounded-xl border border-white/5 bg-white/[0.02] px-4 sm:px-6 py-4 sm:py-5 text-center">
+                              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Faturado</p>
+                              <p className="font-heading text-xl sm:text-3xl font-bold text-white tracking-tight">{c.revenue}</p>
                             </div>
-                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2 text-center">
-                              <p className="text-[8px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Compras</p>
-                              <p className="font-heading text-sm font-bold text-blue-400">{c.purchases}</p>
+                            <div className="rounded-xl border border-white/5 bg-white/[0.02] px-4 sm:px-6 py-4 sm:py-5 text-center">
+                              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Compras</p>
+                              <p className="font-heading text-xl sm:text-3xl font-bold text-blue-400 tracking-tight">{c.purchases}</p>
                             </div>
                           </div>
                         </div>
