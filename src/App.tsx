@@ -1072,14 +1072,14 @@ export default function App() {
                       <CarouselItem key={i}>
                         <div className="flex flex-col gap-3">
                           {/* Print */}
-                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative">
+                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative h-44 sm:h-52">
                             <img
                               src={c.image}
                               alt={`Print TikTok Ads — ${c.period}`}
-                              className="w-full h-auto block"
+                              className="w-full h-full object-cover object-top block"
                               loading="lazy"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                           </div>
                           {/* Period */}
                           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest text-center">{c.period}</p>
