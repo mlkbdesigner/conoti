@@ -1000,67 +1000,119 @@ export default function App() {
                 </div>
               </motion.div>
 
-              {/* Right bento - Case Study Card */}
+              {/* Right bento - Real Cases Carousel */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 lg:p-7 flex flex-col gap-5 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(147,51,234,0.08)] h-full"
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-5 lg:p-6 flex flex-col gap-4 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(147,51,234,0.08)] h-full"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between">
                   <span className="badge-glass text-purple-300 text-[10px] normal-case tracking-normal">
                     <Sparkles size={10} />
-                    Caso real
+                    Casos reais
                   </span>
-                  <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Últimos 30 dias</span>
+                  <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">TikTok Ads Manager</span>
                 </div>
 
-                {/* WhatsApp-style bubble */}
-                <div className="rounded-xl bg-white/[0.03] border border-white/5 p-4 relative">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="h-7 w-7 rounded-full bg-emerald-500/20 flex items-center justify-center ring-1 ring-emerald-500/30">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="#10B981" aria-hidden="true"><path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.198.297-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.575-1.516-3.39-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.875 2.909 4.371 2.909 7.026-.004 5.444-4.46 9.86-9.935 9.86M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/></svg>
-                    </div>
-                    <p className="text-xs font-bold text-white">Cliente Conoti</p>
-                    <span className="ml-auto text-[9px] text-slate-600">10:37</span>
+                <Carousel className="flex-1 flex flex-col" opts={{ loop: true }}>
+                  <CarouselContent>
+                    {[
+                      {
+                        image: "/resultados/Resultados2.png",
+                        period: "Dez 2024 — Jun 2025",
+                        roas: "5,35x",
+                        invested: "R$ 110K",
+                        revenue: "R$ 589K",
+                        purchases: "1.643",
+                      },
+                      {
+                        image: "/resultados/Resultado1.png",
+                        period: "Período completo",
+                        roas: "7,01x",
+                        invested: "R$ 153K",
+                        revenue: "R$ 1,07M",
+                        purchases: "4.257",
+                      },
+                      {
+                        image: "/resultados/Resultado3.png",
+                        period: "Conta gerenciada",
+                        roas: "11,13x",
+                        invested: "R$ 32K",
+                        revenue: "R$ 361K",
+                        purchases: "1.245",
+                      },
+                      {
+                        image: "/resultados/Resultado4.png",
+                        period: "Conta gerenciada",
+                        roas: "5,32x",
+                        invested: "R$ 320K",
+                        revenue: "R$ 1,70M",
+                        purchases: "—",
+                      },
+                      {
+                        image: "/resultados/Resultado5.png",
+                        period: "Conta gerenciada",
+                        roas: "9,07x",
+                        invested: "R$ 14K",
+                        revenue: "R$ 127K",
+                        purchases: "444",
+                      },
+                      {
+                        image: "/resultados/Resultado6.png",
+                        period: "Conta gerenciada",
+                        roas: "5,18x",
+                        invested: "R$ 271K",
+                        revenue: "R$ 1,40M",
+                        purchases: "5.263",
+                      },
+                    ].map((c, i) => (
+                      <CarouselItem key={i}>
+                        <div className="flex flex-col gap-3">
+                          {/* Print */}
+                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative">
+                            <img
+                              src={c.image}
+                              alt={`Print TikTok Ads — ${c.period}`}
+                              className="w-full h-auto block"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                          </div>
+                          {/* Period */}
+                          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest text-center">{c.period}</p>
+                          {/* ROAS big */}
+                          <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] p-4 text-center">
+                            <p className="font-heading text-4xl font-bold text-emerald-400 leading-none">{c.roas}</p>
+                            <p className="text-[10px] font-bold text-emerald-300 uppercase tracking-widest mt-2">ROAS médio no período</p>
+                          </div>
+                          {/* 3 mini stats */}
+                          <div className="grid grid-cols-3 gap-2">
+                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2.5 text-center">
+                              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-1">Investido</p>
+                              <p className="font-heading text-sm font-bold text-purple-400">{c.invested}</p>
+                            </div>
+                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2.5 text-center">
+                              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-1">Faturado</p>
+                              <p className="font-heading text-sm font-bold text-white">{c.revenue}</p>
+                            </div>
+                            <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-2.5 text-center">
+                              <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-1">Compras</p>
+                              <p className="font-heading text-sm font-bold text-blue-400">{c.purchases}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <div className="flex items-center justify-between gap-3 pt-2">
+                    <CarouselPrevious className="static translate-y-0 border-white/10 bg-white/5 text-white hover:bg-white/10" />
+                    <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Arrastar / navegar</span>
+                    <CarouselNext className="static translate-y-0 border-white/10 bg-white/5 text-white hover:bg-white/10" />
                   </div>
-                  <div className="text-sm text-slate-300 leading-relaxed space-y-0.5 pl-9">
-                    <p>Bom dia</p>
-                    <p>171 contatos</p>
-                    <p>61 agendamentos</p>
-                    <p>42 vendas</p>
-                    <p className="text-emerald-400 font-bold">R$ 75.918,00</p>
-                  </div>
-                </div>
-
-                {/* 4 mini stats */}
-                <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { label: "Chamadas WhatsApp", value: "171", color: "text-purple-400" },
-                    { label: "Agendamentos", value: "61", color: "text-blue-400" },
-                    { label: "Compareceram", value: "54", color: "text-orange-400" },
-                    { label: "Vendas no mês", value: "42", color: "text-fuchsia-400" },
-                  ].map((stat, i) => (
-                    <div key={i} className="rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3">
-                      <p className={`font-heading text-xl font-bold ${stat.color}`}>{stat.value}</p>
-                      <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mt-0.5">{stat.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Investimento vs Vendas — ROI highlight */}
-                <div className="grid grid-cols-2 gap-2 mt-auto">
-                  <div className="rounded-xl border border-purple-500/20 bg-purple-500/[0.06] px-4 py-3.5">
-                    <p className="text-[9px] font-bold text-purple-300 uppercase tracking-widest mb-1">Investimento</p>
-                    <p className="font-heading text-base font-bold text-white">R$ 4.967</p>
-                  </div>
-                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] px-4 py-3.5">
-                    <p className="text-[9px] font-bold text-emerald-300 uppercase tracking-widest mb-1">Vendas</p>
-                    <p className="font-heading text-base font-bold text-white">R$ 75.918</p>
-                  </div>
-                </div>
+                </Carousel>
               </motion.div>
             </div>
           </div>
