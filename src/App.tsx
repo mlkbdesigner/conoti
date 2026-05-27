@@ -965,7 +965,7 @@ export default function App() {
               </p>
             </motion.div>
 
-            <div className="grid gap-8 lg:grid-cols-[3fr_2fr]">
+            <div className="flex flex-col gap-8">
               {/* Left bento - Stats (bigger) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
