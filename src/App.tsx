@@ -1089,8 +1089,8 @@ export default function App() {
                               </div>
                             </div>
                           </div>
-                          {/* 3 mini stats */}
-                          <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                          {/* 2 mini stats */}
+                          <div className="grid grid-cols-2 gap-3 sm:gap-4">
                             <div className="rounded-xl border border-white/5 bg-white/[0.02] px-4 sm:px-6 py-4 sm:py-5 text-center">
                               <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Investido</p>
                               <p className="font-heading text-xl sm:text-3xl font-bold text-purple-400 tracking-tight">{c.invested}</p>
@@ -1099,19 +1099,13 @@ export default function App() {
                               <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Faturado</p>
                               <p className="font-heading text-xl sm:text-3xl font-bold text-white tracking-tight">{c.revenue}</p>
                             </div>
-                            <div className="rounded-xl border border-white/5 bg-white/[0.02] px-4 sm:px-6 py-4 sm:py-5 text-center">
-                              <p className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Compras</p>
-                              <p className="font-heading text-xl sm:text-3xl font-bold text-blue-400 tracking-tight">{c.purchases}</p>
-                            </div>
                           </div>
                         </div>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <div className="flex items-center justify-end gap-2 pt-1">
-                    <CarouselPrevious className="static translate-y-0 h-8 w-8 border-white/10 bg-white/5 text-white hover:bg-white/10" />
-                    <CarouselNext className="static translate-y-0 h-8 w-8 border-white/10 bg-white/5 text-white hover:bg-white/10" />
-                  </div>
+                  <CarouselPrevious className="left-4 sm:left-6 h-10 w-10 sm:h-12 sm:w-12 border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:border-white/30" />
+                  <CarouselNext className="right-4 sm:right-6 h-10 w-10 sm:h-12 sm:w-12 border-white/20 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 hover:border-white/30" />
                 </Carousel>
               </motion.div>
             </div>
