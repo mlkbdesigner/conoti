@@ -1006,7 +1006,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-5 lg:p-6 flex flex-col gap-4 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(147,51,234,0.08)] h-full"
+                className="rounded-2xl border border-white/5 bg-white/[0.02] p-5 lg:p-6 flex flex-col gap-4 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(147,51,234,0.08)]"
               >
                 {/* Header */}
                 <div className="flex items-center justify-between">
@@ -1017,7 +1017,7 @@ export default function App() {
                   <span className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">TikTok Ads Manager</span>
                 </div>
 
-                <Carousel className="flex-1 flex flex-col" opts={{ loop: true }}>
+                <Carousel opts={{ loop: true }}>
                   <CarouselContent>
                     {[
                       {
