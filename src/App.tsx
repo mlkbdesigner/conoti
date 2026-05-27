@@ -977,7 +977,7 @@ export default function App() {
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-600/5 to-transparent pointer-events-none" aria-hidden="true" />
                 <div className="relative z-10">
                   <p className="text-sm font-bold text-purple-400 uppercase tracking-[0.2em] mb-14">Números que falam por si</p>
-                  <div className="flex flex-col gap-10 lg:gap-12">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-10">
                     {[
                       { label: "Gerados na plataforma", value: "+R$10M", color: "text-emerald-400" },
                       { label: "Marcas atendidas", value: "+100", color: "text-purple-400" },
@@ -990,9 +990,9 @@ export default function App() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: i * 0.08 }}
-                        className="space-y-2"
+                        className="space-y-2 min-w-0"
                       >
-                        <p className={`font-heading text-4xl lg:text-5xl font-bold tracking-tighter ${stat.color}`}>{stat.value}</p>
+                        <p className={`font-heading text-3xl sm:text-3xl lg:text-5xl font-bold tracking-tighter ${stat.color}`}>{stat.value}</p>
                         <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{stat.label}</p>
                       </motion.div>
                     ))}
@@ -1072,21 +1072,20 @@ export default function App() {
                       <CarouselItem key={i}>
                         <div className="flex flex-col gap-3">
                           {/* Print with overlaid ROAS badge */}
-                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative h-72 sm:h-96">
+                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative">
                             <img
                               src={c.image}
                               alt={`Print TikTok Ads — ${c.period}`}
-                              className="w-full h-full object-cover object-top block"
+                              className="w-full h-auto block"
                               loading="lazy"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-                            <div className="absolute top-2 left-2 right-2 flex items-center justify-between">
-                              <span className="text-[9px] font-bold text-white/80 uppercase tracking-widest bg-black/40 backdrop-blur-md px-2 py-1 rounded">{c.period}</span>
+                            <div className="absolute top-3 left-3">
+                              <span className="text-[10px] font-bold text-white uppercase tracking-widest bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg ring-1 ring-white/10">{c.period}</span>
                             </div>
-                            <div className="absolute bottom-2 left-2 right-2 flex items-end justify-between">
-                              <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/20 backdrop-blur-md px-3 py-1.5">
-                                <p className="font-heading text-2xl font-bold text-emerald-300 leading-none">{c.roas}</p>
-                                <p className="text-[8px] font-bold text-emerald-200 uppercase tracking-widest mt-0.5">ROAS médio</p>
+                            <div className="absolute top-3 right-3">
+                              <div className="rounded-lg ring-1 ring-emerald-400/40 bg-emerald-500/30 backdrop-blur-md px-3 py-1.5">
+                                <p className="font-heading text-xl font-bold text-emerald-200 leading-none">{c.roas}</p>
+                                <p className="text-[8px] font-bold text-emerald-100 uppercase tracking-widest mt-0.5">ROAS médio</p>
                               </div>
                             </div>
                           </div>
