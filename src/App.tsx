@@ -1070,9 +1070,9 @@ export default function App() {
                       },
                     ].map((c, i) => (
                       <CarouselItem key={i}>
-                        <div className="flex flex-col gap-2.5">
+                        <div className="flex flex-col gap-3">
                           {/* Print with overlaid ROAS badge */}
-                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative h-32 sm:h-36">
+                          <div className="rounded-xl border border-white/10 bg-black overflow-hidden relative h-72 sm:h-96">
                             <img
                               src={c.image}
                               alt={`Print TikTok Ads — ${c.period}`}
