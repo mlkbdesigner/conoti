@@ -513,8 +513,11 @@ export default function App() {
                   </div>
                 </div>
                 <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-7xl leading-[1.05]">
-                  <span className="text-gradient-purple">Agência oficial TikTok.</span><br /><span className="italic text-slate-300 text-3xl sm:text-4xl font-medium">Cuidamos de tudo para você, da implementação à venda.</span>
+                  <span className="text-gradient-purple">Agência oficial TikTok.</span>
                 </h1>
+                <p className="mt-6 font-heading text-2xl sm:text-3xl font-semibold text-slate-300 leading-tight max-w-xl">
+                  Cuidamos de tudo para você, da implementação à venda.
+                </p>
                 <p className="mt-8 text-lg text-slate-400 leading-relaxed max-w-lg">
                   A Conoti é a agência oficial TikTok para marcas que querem escalar com previsibilidade. Ads, Shop e Business operados por profissionais certificados, com gerente exclusivo e contato direto com a plataforma.
                 </p>
