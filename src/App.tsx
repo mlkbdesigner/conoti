@@ -496,15 +496,27 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="badge-glass text-purple-400 mb-8 backdrop-blur-md">
-                  <Zap size={14} className="text-purple-400" />
-                  <span>Agência Oficial TikTok</span>
+                <div className="flex flex-wrap items-center gap-3 mb-8">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 ring-1 ring-black/5 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+                    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" fill="#000"/>
+                      <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" fill="#FF004F" transform="translate(-1.5,-1.5) scale(0.95)" opacity="0.7"/>
+                      <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" fill="#00F2EA" transform="translate(1.5,1.5) scale(0.95)" opacity="0.7"/>
+                    </svg>
+                    <span className="text-[11px] font-bold text-black tracking-tight">TikTok <span className="font-normal">Marketing Partner</span></span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 ring-1 ring-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+                    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" fill="#fff"/>
+                    </svg>
+                    <span className="text-[11px] font-bold text-white tracking-tight">TikTok <span className="font-normal opacity-80">Shop Partner</span></span>
+                  </div>
                 </div>
                 <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-7xl leading-[1.05]">
-                  Escale no TikTok.<br /><span className="text-gradient-purple">Do criativo à venda.</span>
+                  <span className="text-gradient-purple">Agência oficial TikTok.</span><br /><span className="italic text-slate-300 text-3xl sm:text-4xl font-medium">Cuidamos de tudo para você, da implementação à venda.</span>
                 </h1>
                 <p className="mt-8 text-lg text-slate-400 leading-relaxed max-w-lg">
-                  A Conoti é a agência oficial TikTok para marcas que querem escalar com previsibilidade. Ads, Shop e Business operados por mídia buyers certificados, com gerente exclusivo e canal direto com a plataforma.
+                  A Conoti é a agência oficial TikTok para marcas que querem escalar com previsibilidade. Ads, Shop e Business operados por profissionais certificados, com gerente exclusivo e contato direto com a plataforma.
                 </p>
                 <div className="mt-12 flex flex-col sm:flex-row gap-5">
                   <a
@@ -518,7 +530,7 @@ export default function App() {
                     href="#results"
                     className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-10 py-5 text-lg font-bold text-white backdrop-blur-md hover:bg-white/10 transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
                   >
-                    Casos de Estudo
+                    Estudo de Casos
                   </a>
                 </div>
 
@@ -957,12 +969,11 @@ export default function App() {
                 <TrendingUp size={14} />
                 <span>Resultados Reais</span>
               </div>
-              <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4">
-                Performance que <span className="text-gradient-purple">se Sustenta.</span>
+              <h2 className="font-heading text-4xl font-bold text-white sm:text-6xl tracking-tighter mb-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+                <span>Marcas que confiam na</span>
+                <img src="/logo-conoti.png" alt="Conoti" className="h-8 sm:h-12 lg:h-14 w-auto inline-block align-middle" />
+                <span>:</span>
               </h2>
-              <p className="text-slate-400 font-medium text-lg max-w-xl mx-auto leading-relaxed">
-                Marcas que confiaram na Conoti deixaram o achismo no passado.
-              </p>
             </motion.div>
 
             <div className="flex flex-col gap-8">
