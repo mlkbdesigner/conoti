@@ -515,7 +515,7 @@ export default function App() {
                 <h1 className="font-heading text-5xl font-bold tracking-tight text-white sm:text-7xl leading-[1.05]">
                   <span className="text-gradient-purple">Agência oficial TikTok.</span>
                 </h1>
-                <p className="mt-6 font-heading text-2xl sm:text-3xl font-semibold text-slate-300 leading-tight max-w-xl">
+                <p className="mt-4 text-lg sm:text-xl font-medium text-slate-300 leading-snug max-w-md">
                   Cuidamos de tudo para você, da implementação à venda.
                 </p>
                 <p className="mt-8 text-lg text-slate-400 leading-relaxed max-w-lg">
